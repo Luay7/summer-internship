@@ -1,0 +1,37 @@
+--- TEST 1: NO CONTEXT ---
+Q1: Prompt engineering is the strategic art and science of designing effective inputs, known as "prompts," to guide artificial intelligence models, particularly large language models (LLMs), in generating accurate, relevant, and desired outputs. It's crucial because AI models, while powerful, lack inherent intent; they respond directly to the instructions given.
+
+This discipline involves understanding how models process information and then crafting prompts with clarity, specificity, and appropriate context. Techniques include providing examples (few-shot prompting), defining roles, specifying output formats, setting constraints, and iteratively refining prompts based on model responses. The goal is to optimize the AI's performance for a wide range of tasks, from generating creative content and summarization to data analysis and code production, by precisely communicating the user's intent to the machine.
+Q2: Prompt engineering is the strategic process of crafting precise inputs (prompts) for AI models to elicit desired, accurate, and relevant outputs effectively, maximizing the AI's utility.
+
+Its key steps include:
+1.  **Define Goal:** Clearly articulate the desired outcome.
+2.  **Draft Initial Prompt:** Create a first version.
+3.  **Test & Iterate:** Execute, analyze the AI's response, and refine the prompt through continuous adjustments (adding details, constraints, or examples).
+4.  **Evaluate:** Assess if the refined output consistently meets specified criteria.
+
+To write an excellent prompt, requirements are **Clarity** (unambiguous language), **Specificity** (precise instructions), **Context** (relevant background info), **Constraints** (defining format, length, style), and often **Persona assignment** or **Few-shot examples** to significantly improve output quality.
+
+Q3: Welcome to the exciting world of prompt engineering!
+
+Prompt engineering is the strategic art of crafting inputs (prompts) to effectively guide large language models (LLMs) towards specific, high-quality outputs.
+
+**Requirements:** Understanding the LLM's nature, your precise goal, and the desired output format.
+
+**Steps:** Begin with clear, unambiguous instructions. Provide sufficient context, define constraints, and specify the output structure. Utilizing "few-shot" examples or assigning a persona to the model often enhances relevance.
+
+**Best Output:** Iterate and refine your prompts. Be highly specific, break down complex tasks, and control creativity with parameters like 'temperature'. The aim is direct, unambiguous communication to consistently unlock the model's optimal performance.
+
+Q4: As a Prompt Engineer, imagine you're a master chef for an incredibly versatile, yet sometimes directionless, AI. Prompt engineering is crafting the perfect recipe – your 'prompt' – to elicit the exact dish you desire.
+
+First, specify *what* you want with clarity: "Summarize this technical paper." Next, add essential *context*: "for a non-technical audience." Then, provide *examples* (few-shot learning) to illustrate: "Paper: [Text]. Summary: [Example]." Finally, impose *constraints* or *desired format*: "Use bullet points, under 100 words."
+
+It's about providing structured, unambiguous guidance, transforming vague requests into precise instructions, ensuring the AI consistently delivers high-quality, relevant, and predictable outputs.
+
+Q5: Prompt engineering is the art of crafting precise instructions (prompts) to guide AI models for desired, high-quality outputs.
+
+*   **Clarity & Specificity:** State goals clearly. *E.g., "Summarize this article in three concise bullet points, focusing on main arguments."*
+*   **Context:** Provide relevant background. *E.g., "Considering the user's interest in classic literature, recommend a novel."*
+*   **Few-shot Examples:** Demonstrate desired format/style. *E.g., "Input: Happy -> Output: Joyful. Input: Sad -> Output: ?"*
+*   **Constraints:** Set boundaries for output. *E.g., "Respond in a friendly tone, strictly under 50 words."*
+*   **Iteration:** Refine prompts based on model responses until optimal results are achieved.
