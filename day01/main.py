@@ -6,11 +6,11 @@ from google import genai
 load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-prompt_1="Explain prompt engineering. Write your answer in approximately 120 words"
-prompt_2="Explain prompt engineering in detail, including its steps and the requirements needed to write an excellent prompt. Write your answer in approximately 120 words"
-prompt_3="I am a student currently doing a summer internship in Artificial Intelligence. Act as an expert instructor and explain prompt engineering to me in an organized and understandable way. Clarify its requirements, the steps to follow, and how to get the best possible output from a prompt. Write your answer in approximately 120 words"
-prompt_4="Act as an experienced Prompt Engineer. Explain prompt engineering in a creative, organized, and sequential manner, using clear examples to illustrate your points. Write your answer in approximately 120 words"
-prompt_5="Role: Expert Prompt Engineer. Task: Explain prompt engineering in an organized and sequential manner with clear examples. Constraints:\nKeep the entire response strictly under 120 words.\nUse bullet points for readability.\nStart directly with the explanation without any introductory or greeting filler."
+prompt_1 = "Explain prompt engineering. Write your answer in approximately 120 words"
+prompt_2 = "Explain prompt engineering in detail, including its steps and requirements using an organized list. Write your answer in approximately 120 words"
+prompt_3 = "I am a student currently doing a summer internship in Artificial Intelligence. Explain prompt engineering in detail, including its steps and requirements using an organized list. Write your answer in approximately 120 words"
+prompt_4 = "I am a student currently doing a summer internship in Artificial Intelligence. Act as an experienced Prompt Engineer. Explain prompt engineering in a creative, sequential manner with clear examples. Write your answer in approximately 120 words"
+prompt_5 = "Role: Expert Prompt Engineer. Context: Summer intern student in AI. Task: Explain prompt engineering sequentially with examples. Format: Clean bullet points. Constraints: Strictly under 120 words, with absolutely no introductory filler."
 
 # Part 2: No Context (Stateless)
 print("--- TEST 1: NO CONTEXT ---")
