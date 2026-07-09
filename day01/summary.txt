@@ -1,0 +1,22 @@
+**AI Development Ecosystem – Core Information & Workflow Overview:**
+
+**• AI Dev Toolchain - Key Components**
+
+*   **IDEs (Integrated Developers Environments):** Software platforms providing developers with tools for coding, debugging, project management, and extensions.  Essential for software creation & maintenance. Examples: Visual Studio Code, Eclipse, PyCharm.
+*   **CLI (Command Line Interface) - Text-Based Interfaces:** System administration and scripting utilities used solely via text instructions – run commands to manage operating system tasks efficiently.  Useful for automation within a system.
+*   **API (Application Programming Interface):** A software interface that allows different applications or systems to communicate with each other effortlessly, enabling collaboration and reuse of services across multiple programs – providing standardized access to functionality through standard requests.
+
+**• Workflow – AI Development Stages:**
+
+1.  **User Input:** The user initiates interaction via a web application or system (e.g., typing a question), creating a prompt.
+2.  **API Request:** The application sends the user’s prompt – the text/question – to the API server, framing it as a structured request for assistance or results. 
+3.   **Prompt Forwarding:** The API acts as a data connector enabling delivery of information from a 'sender' (the model) to another 'recipient', facilitating processing on the backend.
+4.  **Generation & Response:**  The LLM Server processes and generates textual, graphic (image), or resulting content based the user's prompt (it's essentially processing whatever they input.). 
+5. **Data Return:** The server then delivers a response containing generated data back to the application for further analysis and usage.
+
+**• Illustrative Examples**
+
+*   **ChatGPT Web Interface** - User inputs asks, "Write an essay" –  The software delivers the prompt as text directly to this specific interface.
+*   **Python Script with API Call:** A user uses the API through a python script to call an external LLM server providing it with custom text inside variables/modules for use
+
+This summary outlines the essential elements of our AI development workflow using the provided text.

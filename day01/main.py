@@ -1,46 +1,80 @@
-import os
-from dotenv import load_dotenv
-from google import genai
+from pathlib import Path
+import ollama
+from fpdf import FPDF
 
-# Part 1: Setup and Initialization
-load_dotenv()
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+# --- 01 ---
+print("\n--- 1: Get text from user ---")
+text = input("Enter text to summarize: ")
+print("Text received successfully.")
+# --- -- ---
 
-prompt_1 = "Explain prompt engineering. Write your answer in approximately 120 words"
-prompt_2 = "Explain prompt engineering in detail, including its steps and requirements using an organized list. Write your answer in approximately 120 words"
-prompt_3 = "I am a student currently doing a summer internship in Artificial Intelligence. Explain prompt engineering in detail, including its steps and requirements using an organized list. Write your answer in approximately 120 words"
-prompt_4 = "I am a student currently doing a summer internship in Artificial Intelligence. Act as an experienced Prompt Engineer. Explain prompt engineering in a creative, sequential manner with clear examples. Write your answer in approximately 120 words"
-prompt_5 = "Role: Expert Prompt Engineer. Context: Summer intern student in AI. Task: Explain prompt engineering sequentially with examples. Format: Clean bullet points. Constraints: Strictly under 120 words, with absolutely no introductory filler."
+# --- 02 ---
+print("\n--- 2: Determine output format ---")
 
-# Part 2: No Context (Stateless)
-print("--- TEST 1: NO CONTEXT ---")
+while True:
+    output_format = input("Enter output format (text or pdf) or type (exit) to quit: ")
+    
+    if output_format == "exit":
+        print("Exiting the program.")
+        exit()
+        
+    if output_format == "text" or output_format == "pdf":
+        break
+    else:
+        print("Error: Invalid format. Please try again or type (exit).")
+print(f"Format selected successfully. Your choice is: {output_format}")
+# --- -- ---
 
-response_1_stateless = client.models.generate_content(
-    model='gemini-2.5-flash', 
-    contents=prompt_1
+# --- 03 ---
+print("\n--- 3: Append prompt to text ---")
+
+prompt_instruction = f"""
+Role: Expert Information Architect and Professional Summarizer.
+Task: Analyze the provided document and generate a high-density, clear summary.
+Context: The user needs to understand the core messages and key takeaways of the text quickly without missing critical data.
+Format: Use clean, organized bullet points for the main points.
+Constraints: 
+- Rely strictly on the provided text.
+- Start directly with the explanation or bullet points, with absolutely no introductory filler (e.g., do NOT say "Here is the summary").
+- Maintain an objective and professional tone.
+
+Document Content:
+{text}
+"""
+print("Process successful. Text is ready to be sent to the model.")
+# --- -- ---
+
+# --- 04 ---
+print("\n--- 4: Send prompt and text to the model for summarization ---")
+
+response = ollama.generate(
+    model="gemma3:1b",
+    prompt=prompt_instruction
 )
-print(f"Q1: {response_1_stateless.text.strip()}")
 
-response_2_stateless = client.models.generate_content(
-    model='gemini-2.5-flash', 
-    contents=prompt_2
-)
-print(f"Q2: {response_2_stateless.text.strip()}\n")
+summary_result = response["response"]
+print("Process successful (Summary received from the model).")
+# --- -- ---
 
-response_3_stateless = client.models.generate_content(
-    model='gemini-2.5-flash', 
-    contents=prompt_3
-)
-print(f"Q3: {response_3_stateless.text.strip()}\n")
+# --- 05 ---
+print("\n--- 5: Save output to file ---")
 
-response_4_stateless = client.models.generate_content(
-    model='gemini-2.5-flash', 
-    contents=prompt_4
-)
-print(f"Q4: {response_4_stateless.text.strip()}\n")
-
-response_5_stateless = client.models.generate_content(
-    model='gemini-2.5-flash', 
-    contents=prompt_5
-)
-print(f"Q5: {response_5_stateless.text.strip()}\n")
+if output_format == "text":
+    # Define the output text file path
+    output_file = Path("summary.txt")
+    
+    output_file.write_text(summary_result)
+    print(f"Success! Summary saved as a text file at: {output_file.name}")
+elif output_format == "pdf":
+    output_file = "summary.pdf"
+    
+    clean_summary = summary_result.replace('–', '-').replace('—', '-').replace('“', '"').replace('”', '"')
+    
+    pdf = FPDF(orientation="P", unit="mm", format="A4")
+    pdf.add_page()
+    pdf.set_font("Helvetica", size=12)
+    pdf.multi_cell(0, 10, text=clean_summary)
+    pdf.output(output_file)
+    print(f"Success! Summary saved as an A4 PDF file at: {output_file}")
+print("File saved and program completed successfully.")
+# --- -- ---
