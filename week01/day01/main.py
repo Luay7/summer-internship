@@ -12,10 +12,14 @@ client = genai.Client(api_key=api_key)
 
 print("Sending request...\n")
 
-# 3. Send the request
+# 3. Send the request with Temperature and Max Tokens configured
 response = client.models.generate_content(
     model='gemini-2.5-flash-lite',
-    contents='This is my first CLI API test. Confirm it is working. Use 10 words or fewer.'
+    contents='This is my CLI API test. Confirm it is working and give me a welcome message.',
+    config=types.GenerateContentConfig(
+        temperature=0.8,         # Higher value = more creative/random
+        max_output_tokens=30     # Strict limit on response length
+    )
 )
 
 # 4. Print the result

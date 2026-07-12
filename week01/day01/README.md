@@ -11,3 +11,8 @@ In this first task, I successfully set up the core development environment. This
 I obtained a Gemini API key from Google AI Studio and wrote a Python script to interact with the model directly from the terminal. 
 
 This initial script represents my very first successful API request using the CLI, confirming that the environment, API key, and tools are properly configured and working perfectly.
+
+## Task 3: API Parameters Exploration
+To build upon the first test, I updated the script to include specific API configuration parameters without changing the core task.
+* **`temperature` (e.g., 0.7):** Controls the creativity of the response.
+* **`max_output_tokens` (e.g., 30):** Specifies the maximum number of tokens (words or word pieces) the model can generate. Pre-setting this limit helps preserve token quotas and prevents them from running out quickly. In my test, the API forcibly cut off the output mid-sentence. While this resulted in incomplete text, the main educational goal was successfully achieved: demonstrating how to practically control token usage and limit the output.
