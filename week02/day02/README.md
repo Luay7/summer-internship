@@ -20,7 +20,7 @@ To test the current verification engine, activate the virtual environment and ru
 
 **Standard execution:**
 ```bash
-python checker.py [https://www.python.org](https://www.python.org)
+python checker.py https://www.python.org
 ```
 **Advanced execution:**
 ```bash

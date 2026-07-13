@@ -1,0 +1,221 @@
+# 6. Smart Verification & Fallback Strategy
+print("-" * 50)
+print("Starting Link Verification...")
+
+for link in links_to_check:
+    # Apply user-defined delay before each request
+    time.sleep(delay)
+    
+    try:
+        # First attempt: Fast HEAD request
+        link_resp = requests.head(link, timeout=5, allow_redirects=True)
+        h_status = link_resp.status_code
+        
+        # Fallback 1: If server rejects HEAD, try GET
+        if h_status in [403, 405]:
+            get_resp = requests.get(link, timeout=5, allow_redirects=True)
+            g_status = get_resp.status_code
+            
+            # Print actual status codes returned by the server
+            if g_status < 400:
+                print(f"[PROTECTED] {link} HEAD {h_status} GET {g_status}")
+            elif g_status == 503:
+                print(f"[UNAVAILABLE] {link} HEAD {h_status} GET {g_status}")
+            elif g_status == 404:
+                print(f"[DEAD] {link} HEAD {h_status} GET {g_status}")
+            else:
+                print(f"[BLOCKED] {link} HEAD {h_status} GET {g_status}")
+        else:
+            # Print actual HEAD status code
+            if h_status < 400:
+                print(f"[OK] {link} HEAD {h_status}")
+            elif h_status == 503:
+                print(f"[UNAVAILABLE] {link} HEAD {h_status}")
+            elif h_status == 404:
+                print(f"[DEAD] {link} HEAD {h_status}")
+            else:
+                print(f"[BROKEN] {link} HEAD {h_status}")
+                
+    except requests.exceptions.Timeout:
+        # Fallback 2: Retry HEAD once on timeout
+        try:
+            retry_resp = requests.head(link, timeout=5, allow_redirects=True)
+            r_status = retry_resp.status_code
+            
+            # If the retry succeeds, log the actual recovered status code
+            if r_status < 400:
+                print(f"[OK] {link} HEAD TIMEOUT HEAD {r_status}")
+            elif r_status == 503:
+                print(f"[UNAVAILABLE] {link} HEAD TIMEOUT HEAD {r_status}")
+            elif r_status == 404:
+                print(f"[DEAD] {link} HEAD TIMEOUT HEAD {r_status}")
+            else:
+                print(f"[BROKEN] {link} HEAD TIMEOUT HEAD {r_status}")
+                
+        except requests.exceptions.Timeout:
+            # If it times out again, there is no status code to print
+            print(f"[DEAD] {link} HEAD TIMEOUT HEAD TIMEOUT")
+        except requests.exceptions.RequestException:
+            # If the retry results in a connection error
+            print(f"[DEAD] {link} HEAD TIMEOUT HEAD ERROR")
+            
+    except requests.exceptions.RequestException:
+        # Catch other connection errors where no status code is returned
+        print(f"[DEAD] {link} HEAD ERROR")
+
+
+
+
+
+python checker.py https://www.python.org --delay 0.1
+Starting scan for: https://www.python.org
+Delay: 0.1 seconds
+Initialization successful. Ready to fetch...
+
+--------------------------------------------------
+Fetching main page: https://www.python.org
+[SUCCESS] Successfully connected to the target URL.
+
+--------------------------------------------------
+Extracting links...
+Found 135 valid links to check.
+
+--------------------------------------------------
+Starting Link Verification...
+[OK] https://www.python.org#content HEAD 200
+[OK] https://www.python.org#python-network HEAD 200
+[OK] https://www.python.org/ HEAD 200
+[OK] https://www.python.org/psf/ HEAD 200
+[OK] https://docs.python.org HEAD 200
+[OK] https://pypi.org/ HEAD 200
+[OK] https://www.python.org/jobs/ HEAD 200
+[OK] https://www.python.org/community/ HEAD 200
+[OK] https://www.python.org#top HEAD 200
+[OK] https://donate.python.org/ HEAD TIMEOUT HEAD 200
+[OK] https://www.python.org#site-map HEAD 200
+[OK] https://www.python.org HEAD 200
+[BROKEN] https://www.linkedin.com/company/python-software-foundation/ HEAD 999
+[DEAD] https://fosstodon.org/@ThePSF HEAD ERROR
+[OK] https://www.python.org/community/irc/ HEAD 200
+[DEAD] https://twitter.com/ThePSF HEAD ERROR
+[OK] https://www.python.org/about/ HEAD 200
+[OK] https://www.python.org/about/apps/ HEAD 200
+[OK] https://www.python.org/about/quotes/ HEAD 200
+[OK] https://www.python.org/about/gettingstarted/ HEAD 200
+[OK] https://www.python.org/about/help/ HEAD 200
+[UNAVAILABLE] http://brochure.getpython.info/ HEAD 503
+[OK] https://www.python.org/downloads/ HEAD 200
+[OK] https://www.python.org/downloads/source/ HEAD 200
+[OK] https://www.python.org/downloads/windows/ HEAD 200
+[OK] https://www.python.org/downloads/macos/ HEAD 200
+[OK] https://www.python.org/downloads/android/ HEAD 200
+[OK] https://www.python.org/downloads/ios/ HEAD 200
+[OK] https://www.python.org/download/other/ HEAD 200
+[OK] https://docs.python.org/3/license.html HEAD 200
+[OK] https://www.python.org/download/alternatives HEAD 200
+[OK] https://www.python.org/doc/ HEAD 200
+[OK] https://www.python.org/doc/av HEAD 200
+[OK] https://wiki.python.org/moin/BeginnersGuide HEAD 200
+[OK] https://docs.python.org/3/faq/ HEAD 200
+[OK] https://translations.python.org/ HEAD 200
+[OK] https://peps.python.org HEAD 200
+[OK] https://wiki.python.org/moin/PythonBooks HEAD 200
+[OK] https://www.python.org/doc/essays/ HEAD 200
+[OK] https://www.python.org/community/diversity/ HEAD 200
+[OK] https://www.python.org/community/lists/ HEAD 200
+[OK] https://www.python.org/community/forums/ HEAD 200
+[OK] https://www.python.org/psf/annual-report/2024/ HEAD 200
+[OK] https://www.python.org/community/workshops/ HEAD 200
+[OK] https://www.python.org/community/sigs/ HEAD 200
+[OK] https://www.python.org/community/logos/ HEAD 200
+[OK] https://wiki.python.org/moin/ HEAD 200
+[OK] https://www.python.org/psf/conduct/ HEAD 200
+[OK] https://www.python.org/community/awards HEAD 200
+[OK] https://www.python.org/psf/get-involved/ HEAD 200
+[OK] https://www.python.org/psf/community-stories/ HEAD 200
+[OK] https://www.python.org/success-stories/ HEAD 200
+[OK] https://www.python.org/success-stories/category/arts/ HEAD 200
+[OK] https://www.python.org/success-stories/category/business/ HEAD 200
+[OK] https://www.python.org/success-stories/category/education/ HEAD 200
+[OK] https://www.python.org/success-stories/category/engineering/ HEAD 200
+[OK] https://www.python.org/success-stories/category/government/ HEAD 200
+[OK] https://www.python.org/success-stories/category/scientific/ HEAD 200
+[OK] https://www.python.org/success-stories/category/software-development/ HEAD 200
+[OK] https://www.python.org/blogs/ HEAD 200
+[OK] https://www.python.org/psf/newsletter/ HEAD 200
+[OK] http://pyfound.blogspot.com/ HEAD 200
+[OK] http://pycon.blogspot.com/ HEAD TIMEOUT HEAD 200
+[OK] http://planetpython.org/ HEAD 200
+[OK] https://www.python.org/events/ HEAD 200
+[OK] https://www.python.org/events/python-events/ HEAD 200
+[OK] https://www.python.org/events/python-user-group/ HEAD 200
+[OK] https://www.python.org/events/python-events/past/ HEAD 200
+[OK] https://www.python.org/events/python-user-group/past/ HEAD 200
+[OK] https://wiki.python.org/moin/PythonEventsCalendar#Submitting_an_Event HEAD 200
+[OK] https://www.python.org/shell/ HEAD 200
+[OK] http://docs.python.org/3/tutorial/introduction.html#using-python-as-a-calculator HEAD 200
+[OK] https://docs.python.org/3/tutorial/introduction.html#lists HEAD 200
+[OK] https://docs.python.org/3/tutorial/controlflow.html HEAD 200
+[OK] https://docs.python.org/3/tutorial/controlflow.html#defining-functions HEAD 200
+[OK] https://docs.python.org/3/tutorial/ HEAD 200
+[OK] https://www.python.org/downloads/release/python-3146/ HEAD 200
+[OK] https://jobs.python.org HEAD TIMEOUT HEAD 200
+[OK] https://blog.python.org HEAD 200
+[OK] https://pyfound.blogspot.com/2026/07/the-psf-d-workgroup-are-starting-office.html HEAD 200
+[OK] https://mailchi.mp/python/python-software-foundation-july-2024-newsletter-19888023 HEAD 200
+[OK] https://pyfound.blogspot.com/2026/07/thinking-about-running-for-psf-board.html HEAD 200
+[OK] https://pyfound.blogspot.com/2026/06/packaging-council-inaugural-election.html HEAD 200
+[OK] https://blog.python.org/2026/06/2026-packaging-council-election-dates/ HEAD 200
+[OK] https://www.python.org/events/calendars/ HEAD 200
+[OK] https://www.python.org/events/python-user-group/2190/ HEAD 200
+[OK] https://www.python.org/events/python-user-group/2143/ HEAD 200
+[OK] https://www.python.org/events/python-events/2146/ HEAD 200
+[OK] https://www.python.org/events/python-events/2179/ HEAD 200
+[OK] https://www.python.org/events/python-events/2137/ HEAD 200
+[OK] https://www.python.org/success-stories/building-robust-codebases-with-pythons-type-annotations/ HEAD 200
+[OK] https://www.python.org/about/apps HEAD 200
+[OK] https://www.djangoproject.com/ HEAD 200
+[OK] https://trypyramid.com/ HEAD 200
+[OK] https://bottlepy.org HEAD 200
+[OK] https://www.tornadoweb.org/ HEAD 200
+[OK] https://flask.palletsprojects.com/ HEAD 200
+[OK] https://litestar.dev/ HEAD 200
+[OK] https://fastapi.tiangolo.com/ HEAD 200
+[BLOCKED] https://en.wikipedia.org/wiki/Tkinter HEAD 403 GET 403
+[OK] https://pygobject.gnome.org/ HEAD 200
+[OK] https://riverbankcomputing.com/software/pyqt/intro HEAD 200
+[OK] https://wiki.qt.io/Qt_for_Python HEAD 200
+[OK] https://kivy.org/ HEAD 200
+[OK] https://www.wxpython.org/ HEAD 200
+[OK] https://dearpygui.readthedocs.io/en/latest/ HEAD 200
+[OK] https://pytorch.org/ HEAD 200
+[OK] https://www.tensorflow.org/ HEAD TIMEOUT HEAD 200
+[OK] https://scikit-learn.org/ HEAD 200
+[OK] https://huggingface.co/docs/transformers/ HEAD 200
+[OK] https://docs.anthropic.com/ HEAD 200
+[OK] https://langchain.com/ HEAD 200
+[OK] https://scipy.org/ HEAD 200
+[OK] https://pandas.pydata.org/ HEAD 200
+[OK] https://ipython.org/ HEAD 200
+[OK] https://buildbot.net/ HEAD 200
+[DEAD] https://trac.edgewall.org/ HEAD ERROR
+[OK] https://www.roundup-tracker.org/ HEAD 200
+[OK] https://docs.ansible.com/ HEAD 200
+[OK] https://saltproject.io/ HEAD 200
+[OK] https://www.openstack.org/ HEAD 200
+[OK] https://xon.sh/ HEAD 200
+[OK] https://www.python.org/psf/membership/ HEAD 200
+[OK] https://www.python.org/psf/donations/ HEAD 200
+[OK] https://www.python.org/dev/ HEAD 200
+[OK] https://devguide.python.org/ HEAD 200
+[OK] https://github.com/python/cpython/issues HEAD 200
+[OK] https://mail.python.org/mailman/listinfo/python-dev HEAD 200
+[OK] https://www.python.org/dev/core-mentorship/ HEAD 200
+[OK] https://www.python.org/dev/security/ HEAD 200
+[OK] https://github.com/python/pythondotorg/issues HEAD 200
+[DEAD] https://status.python.org/ HEAD TIMEOUT HEAD TIMEOUT
+[OK] https://www.python.org/psf-landing/ HEAD 200
+[OK] https://www.python.org/about/legal/ HEAD 200
+[OK] https://policies.python.org/python.org/Privacy-Notice/ HEAD 200
+(venv) mrcs@L:~/Documents/summer/summer-internship/week02/day02$ 
+
