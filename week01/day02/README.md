@@ -12,3 +12,13 @@ The goal of today's task is to master the basics of Prompt Engineering and obser
 
 **Key Takeaway:**
 I discovered that when a prompt is highly detailed, clear, and structured, the AI's output becomes much more accurate, precise, and specific. This clearly demonstrates the true advantage and power of prompt engineering.
+
+## Task 2: Output Analysis & Comparison
+I analyzed the outputs of the 5 prompts and documented the detailed progression in `prompt_comparison.md`. 
+
+**Key Findings:**
+* **Generic vs. Specific:** The basic prompt (Prompt 1) gave a generic block of text. However, adding specific formats and contexts (Prompts 2 & 3) immediately improved readability and structure.
+* **The Power of Personas:** Assigning a specific role (Prompt 4) dramatically changed the AI's tone, making it use highly engaging and creative analogies.
+* **The Best Approach (Prompt 5):** Using the strict **5 Elements Framework** (Task, Role, Context, Format, Constraints) yielded the absolute best result. By enforcing strict rules like "no introductory filler," the AI delivered a perfectly structured, fluff-free response with practical examples.
+
+**Conclusion:** Applying structured prompt engineering principles directly controls the AI's behavior, transforming it from a generic text generator into a precise, highly tailored tool.
