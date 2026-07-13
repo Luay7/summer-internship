@@ -19,7 +19,7 @@ I mapped out the complete 6-stage workflow of how a prompt travels from the user
 6. Displays Output to User: The application receives the final answer and shows it nicely on the screen.
 
 ## Task 3: Workflow Diagram & Overcoming Challenges
-To document this data flow, I created a visual diagram which is uploaded in this folder as `Day03.pdf`. 
+To document this data flow, I created a visual diagram which is uploaded in this folder as `AI_Dev_Toolchain.pdf`. 
 
 Challenges Solved:
 * Understanding Code Integration: It was initially difficult to understand how the data flow works when putting AI into real code instead of just using a ready-made website like ChatGPT.
