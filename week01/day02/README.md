@@ -22,3 +22,15 @@ I analyzed the outputs of the 5 prompts and documented the detailed progression 
 * **The Best Approach (Prompt 5):** Using the strict **5 Elements Framework** (Task, Role, Context, Format, Constraints) yielded the absolute best result. By enforcing strict rules like "no introductory filler," the AI delivered a perfectly structured, fluff-free response with practical examples.
 
 **Conclusion:** Applying structured prompt engineering principles directly controls the AI's behavior, transforming it from a generic text generator into a precise, highly tailored tool.
+
+## Task 3: Docker Integration & Network Setup
+To ensure environment isolation and portability, I packaged the entire script inside a Docker container.
+
+**What I did:**
+* Created a `requirements.txt` file to manage dependencies (`google-genai`, `python-dotenv`).
+* Wrote a `Dockerfile` using a lightweight Python image (`python:3.10-slim`).
+* Successfully built and ran the Docker container to execute the prompt script.
+
+**Challenges Solved:**
+* **Network Bridge Issue:** Faced connectivity issues during the Docker build and run processes due to the default bridge network. I solved this by forcing Docker to use the host machine's network directly using the `--network host` flag.
+* **API Key Security:** To keep credentials secure and avoid hardcoding the API key in the image, I passed the local `.env` file at runtime using the `--env-file` flag.

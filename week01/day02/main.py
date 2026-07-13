@@ -20,7 +20,7 @@ print("--- PROMPT ENGINEERING PROGRESSION TEST ---")
 # Use a loop to iterate through the prompts
 for index, prompt in enumerate(prompts, start=1):
     response = client.models.generate_content(
-        model='gemini-2.5-flash',
+        model='gemini-2.5-flash-lite',
         contents=prompt
     )
     print(f"Q{index}: {response.text.strip()}\n")
