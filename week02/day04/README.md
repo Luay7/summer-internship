@@ -42,4 +42,12 @@ Before writing any code, here is the planned roadmap of the bugs that will be in
 ## Phase 2: Execution & Resolution Log
 *(This section will be iteratively updated as bugs are injected into the code, diagnosed by the AI, and fixed).*
 
-**Status:** Ready to begin iterative injection.
+### Bug 1: The Missing Argument Name (CLI Setup)
+* **Symptom:** The script crashed immediately upon execution with a `TypeError: ... missing 1 required positional argument: 'dest'`. This happened regardless of whether the `--delay` argument was passed in the terminal or not.
+* **Diagnosis:** The `add_argument` function in the `argparse` module requires the name of the argument (the flag, e.g., `"--delay"`) as the first positional parameter. Because it was deleted, `argparse` didn't know what to name the incoming variable, causing a fatal crash.
+* **Fix Applied:** Re-added `"--delay"` as the first argument in `parser.add_argument()`.
+
+### Bug 2: The Inverted URL Validation (Logic Error)
+* **Symptom:** The script rejected perfectly valid URLs (like `https://python.org`), throwing an `[ERROR] Invalid URL format` and exiting immediately. 
+* **Diagnosis:** The logic in the URL validation `if` statement was inverted. The code checked `if parsed.scheme in ['http', 'https']`, meaning it actively punished and rejected valid protocols instead of allowing them.
+* **Fix Applied:** Re-added the `not` operator to the condition (`if parsed.scheme not in ['http', 'https']`), restoring the correct validation logic.
