@@ -1,0 +1,228 @@
+python checker.py https://python.org --delay 0.5
+Starting scan for: https://python.org
+Delay: 0.5 seconds
+Initialization successful. Ready to fetch...
+
+--------------------------------------------------
+Fetching main page: https://python.org
+[SUCCESS] Successfully connected to the target URL.
+
+--------------------------------------------------
+Extracting links...
+Found 212 valid links to check.
+
+--------------------------------------------------
+Starting Link Verification...
+[DEAD] https://python.org#content HEAD ERROR
+[DEAD] https://python.org#python-network HEAD ERROR
+[DEAD] https://python.org/ HEAD ERROR
+[DEAD] https://www.python.org/psf/ HEAD ERROR
+[DEAD] https://docs.python.org HEAD ERROR
+[DEAD] https://pypi.org/ HEAD ERROR
+[DEAD] https://python.org/jobs/ HEAD ERROR
+[DEAD] https://python.org/community/ HEAD ERROR
+[DEAD] https://python.org#top HEAD ERROR
+[DEAD] https://python.org/ HEAD ERROR
+[DEAD] https://donate.python.org/ HEAD TIMEOUT HEAD TIMEOUT
+[DEAD] https://python.org#site-map HEAD ERROR
+[DEAD] https://python.org HEAD ERROR
+[DEAD] https://python.org HEAD ERROR
+[DEAD] https://www.linkedin.com/company/python-software-foundation/ HEAD ERROR
+[DEAD] https://fosstodon.org/@ThePSF HEAD TIMEOUT HEAD ERROR
+[DEAD] https://python.org/community/irc/ HEAD ERROR
+[DEAD] https://twitter.com/ThePSF HEAD TIMEOUT HEAD ERROR
+[DEAD] https://python.org/about/ HEAD ERROR
+[DEAD] https://python.org/about/apps/ HEAD ERROR
+[DEAD] https://python.org/about/quotes/ HEAD ERROR
+[DEAD] https://python.org/about/gettingstarted/ HEAD ERROR
+[DEAD] https://python.org/about/help/ HEAD ERROR
+[UNAVAILABLE] http://brochure.getpython.info/ HEAD TIMEOUT HEAD 503
+[DEAD] https://python.org/downloads/ HEAD ERROR
+[DEAD] https://python.org/downloads/ HEAD ERROR
+[DEAD] https://python.org/downloads/source/ HEAD ERROR
+[DEAD] https://python.org/downloads/windows/ HEAD ERROR
+[DEAD] https://python.org/downloads/macos/ HEAD ERROR
+[DEAD] https://python.org/downloads/android/ HEAD ERROR
+[DEAD] https://python.org/downloads/ios/ HEAD ERROR
+[DEAD] https://python.org/download/other/ HEAD ERROR
+[DEAD] https://docs.python.org/3/license.html HEAD ERROR
+[DEAD] https://python.org/download/alternatives HEAD ERROR
+[DEAD] https://python.org/doc/ HEAD ERROR
+[DEAD] https://python.org/doc/ HEAD ERROR
+[DEAD] https://python.org/doc/av HEAD ERROR
+[DEAD] https://wiki.python.org/moin/BeginnersGuide HEAD ERROR
+[DEAD] https://docs.python.org/3/faq/ HEAD ERROR
+[DEAD] https://translations.python.org/ HEAD ERROR
+[DEAD] https://peps.python.org HEAD ERROR
+[DEAD] https://wiki.python.org/moin/PythonBooks HEAD ERROR
+[DEAD] https://python.org/doc/essays/ HEAD ERROR
+[DEAD] https://python.org/community/ HEAD ERROR
+[DEAD] https://python.org/community/diversity/ HEAD ERROR
+[DEAD] https://python.org/community/lists/ HEAD ERROR
+[DEAD] https://python.org/community/irc/ HEAD ERROR
+[DEAD] https://python.org/community/forums/ HEAD ERROR
+[DEAD] https://python.org/psf/annual-report/2024/ HEAD ERROR
+[DEAD] https://python.org/community/workshops/ HEAD ERROR
+[DEAD] https://python.org/community/sigs/ HEAD ERROR
+[DEAD] https://python.org/community/logos/ HEAD ERROR
+[DEAD] https://wiki.python.org/moin/ HEAD ERROR
+[DEAD] https://python.org/psf/conduct/ HEAD ERROR
+[DEAD] https://python.org/community/awards HEAD ERROR
+[DEAD] https://python.org/psf/get-involved/ HEAD ERROR
+[DEAD] https://python.org/psf/community-stories/ HEAD ERROR
+[DEAD] https://python.org/success-stories/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/arts/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/business/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/education/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/engineering/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/government/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/scientific/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/software-development/ HEAD ERROR
+[DEAD] https://python.org/blogs/ HEAD ERROR
+[DEAD] https://python.org/blogs/ HEAD ERROR
+[DEAD] https://python.org/psf/newsletter/ HEAD ERROR
+[DEAD] http://pyfound.blogspot.com/ HEAD ERROR
+[DEAD] http://pycon.blogspot.com/ HEAD ERROR
+[OK] http://planetpython.org/ HEAD TIMEOUT HEAD 200
+[DEAD] https://python.org/events/ HEAD ERROR
+[DEAD] https://python.org/events/python-events/ HEAD ERROR
+[DEAD] https://python.org/events/python-user-group/ HEAD ERROR
+[DEAD] https://python.org/events/python-events/past/ HEAD ERROR
+[DEAD] https://python.org/events/python-user-group/past/ HEAD ERROR
+[DEAD] https://wiki.python.org/moin/PythonEventsCalendar#Submitting_an_Event HEAD ERROR
+[DEAD] https://python.org/shell/ HEAD ERROR
+[DEAD] http://docs.python.org/3/tutorial/introduction.html#using-python-as-a-calculator HEAD ERROR
+[DEAD] https://docs.python.org/3/tutorial/introduction.html#lists HEAD ERROR
+[DEAD] https://docs.python.org/3/tutorial/controlflow.html HEAD ERROR
+[DEAD] https://docs.python.org/3/tutorial/controlflow.html#defining-functions HEAD ERROR
+[DEAD] https://docs.python.org/3/tutorial/ HEAD ERROR
+[DEAD] https://python.org/doc/ HEAD ERROR
+[DEAD] https://python.org/about/gettingstarted/ HEAD ERROR
+[DEAD] https://python.org/downloads/release/python-3146/ HEAD ERROR
+[DEAD] https://docs.python.org HEAD ERROR
+[OK] https://jobs.python.org HEAD TIMEOUT HEAD 200
+[DEAD] https://blog.python.org HEAD ERROR
+[DEAD] https://pyfound.blogspot.com/2026/07/the-psf-d-workgroup-are-starting-office.html HEAD ERROR
+[OK] https://mailchi.mp/python/python-software-foundation-july-2024-newsletter-19888023 HEAD TIMEOUT HEAD 200
+[DEAD] https://pyfound.blogspot.com/2026/07/thinking-about-running-for-psf-board.html HEAD ERROR
+[DEAD] https://pyfound.blogspot.com/2026/06/packaging-council-inaugural-election.html HEAD ERROR
+[DEAD] https://blog.python.org/2026/06/2026-packaging-council-election-dates/ HEAD ERROR
+[DEAD] https://python.org/events/calendars/ HEAD ERROR
+[DEAD] https://python.org/events/python-user-group/2143/ HEAD ERROR
+[DEAD] https://python.org/events/python-events/2146/ HEAD ERROR
+[DEAD] https://python.org/events/python-events/2179/ HEAD ERROR
+[DEAD] https://python.org/events/python-events/2137/ HEAD ERROR
+[DEAD] https://python.org/events/python-events/2176/ HEAD ERROR
+[DEAD] https://python.org/success-stories/ HEAD ERROR
+[DEAD] https://python.org/success-stories/building-a-dependency-graph-of-our-python-codebase/ HEAD ERROR
+[DEAD] https://python.org/success-stories/building-a-dependency-graph-of-our-python-codebase/ HEAD ERROR
+[DEAD] https://python.org/about/apps HEAD ERROR
+[DEAD] https://www.djangoproject.com/ HEAD ERROR
+[DEAD] https://trypyramid.com/ HEAD ERROR
+[OK] https://bottlepy.org HEAD TIMEOUT HEAD 200
+[DEAD] https://www.tornadoweb.org/ HEAD ERROR
+[DEAD] https://flask.palletsprojects.com/ HEAD ERROR
+[DEAD] https://litestar.dev/ HEAD ERROR
+[DEAD] https://fastapi.tiangolo.com/ HEAD ERROR
+[DEAD] https://en.wikipedia.org/wiki/Tkinter HEAD ERROR
+[DEAD] https://pygobject.gnome.org/ HEAD ERROR
+[OK] https://riverbankcomputing.com/software/pyqt/intro HEAD TIMEOUT HEAD 200
+[OK] https://wiki.qt.io/Qt_for_Python HEAD TIMEOUT HEAD 200
+[OK] https://kivy.org/ HEAD TIMEOUT HEAD 200
+[DEAD] https://www.wxpython.org/ HEAD ERROR
+[DEAD] https://dearpygui.readthedocs.io/en/latest/ HEAD ERROR
+[DEAD] https://pytorch.org/ HEAD ERROR
+[DEAD] https://www.tensorflow.org/ HEAD ERROR
+[OK] https://scikit-learn.org/ HEAD TIMEOUT HEAD 200
+[DEAD] https://huggingface.co/docs/transformers/ HEAD ERROR
+[DEAD] https://docs.anthropic.com/ HEAD ERROR
+[OK] https://langchain.com/ HEAD TIMEOUT HEAD 200
+[DEAD] https://scipy.org/ HEAD TIMEOUT HEAD ERROR
+[DEAD] https://pandas.pydata.org/ HEAD ERROR
+[DEAD] https://ipython.org/ HEAD ERROR
+[OK] https://buildbot.net/ HEAD TIMEOUT HEAD 200
+[DEAD] https://trac.edgewall.org/ HEAD TIMEOUT HEAD ERROR
+[OK] https://www.roundup-tracker.org/ HEAD TIMEOUT HEAD 200
+[DEAD] https://docs.ansible.com/ HEAD ERROR
+[OK] https://saltproject.io/ HEAD TIMEOUT HEAD 200
+[DEAD] https://www.openstack.org/ HEAD ERROR
+[DEAD] https://xon.sh/ HEAD ERROR
+[DEAD] https://python.org/psf/ HEAD ERROR
+[DEAD] https://python.org/psf/ HEAD ERROR
+[DEAD] https://python.org/psf/membership/ HEAD ERROR
+[DEAD] https://python.org/psf/donations/ HEAD ERROR
+[DEAD] https://python.org#python-network HEAD ERROR
+[DEAD] https://python.org/about/ HEAD ERROR
+[DEAD] https://python.org/about/apps/ HEAD ERROR
+[DEAD] https://python.org/about/quotes/ HEAD ERROR
+[DEAD] https://python.org/about/gettingstarted/ HEAD ERROR
+[DEAD] https://python.org/about/help/ HEAD ERROR
+[UNAVAILABLE] http://brochure.getpython.info/ HEAD TIMEOUT HEAD 503
+[DEAD] https://python.org/downloads/ HEAD ERROR
+[DEAD] https://python.org/downloads/ HEAD ERROR
+[DEAD] https://python.org/downloads/source/ HEAD ERROR
+[DEAD] https://python.org/downloads/windows/ HEAD ERROR
+[DEAD] https://python.org/downloads/macos/ HEAD ERROR
+[DEAD] https://python.org/downloads/android/ HEAD ERROR
+[DEAD] https://python.org/downloads/ios/ HEAD ERROR
+[DEAD] https://python.org/download/other/ HEAD ERROR
+[DEAD] https://docs.python.org/3/license.html HEAD ERROR
+[DEAD] https://python.org/download/alternatives HEAD ERROR
+[DEAD] https://python.org/doc/ HEAD ERROR
+[DEAD] https://python.org/doc/ HEAD ERROR
+[DEAD] https://python.org/doc/av HEAD ERROR
+[DEAD] https://wiki.python.org/moin/BeginnersGuide HEAD ERROR
+[DEAD] https://docs.python.org/3/faq/ HEAD ERROR
+[DEAD] https://translations.python.org/ HEAD ERROR
+[DEAD] https://peps.python.org HEAD ERROR
+[DEAD] https://wiki.python.org/moin/PythonBooks HEAD ERROR
+[DEAD] https://python.org/doc/essays/ HEAD ERROR
+[DEAD] https://python.org/community/ HEAD ERROR
+[DEAD] https://python.org/community/diversity/ HEAD ERROR
+[DEAD] https://python.org/community/lists/ HEAD ERROR
+[DEAD] https://python.org/community/irc/ HEAD ERROR
+[DEAD] https://python.org/community/forums/ HEAD ERROR
+[DEAD] https://python.org/psf/annual-report/2024/ HEAD ERROR
+[DEAD] https://python.org/community/workshops/ HEAD ERROR
+[DEAD] https://python.org/community/sigs/ HEAD ERROR
+[DEAD] https://python.org/community/logos/ HEAD ERROR
+[DEAD] https://wiki.python.org/moin/ HEAD ERROR
+[DEAD] https://python.org/psf/conduct/ HEAD ERROR
+[DEAD] https://python.org/community/awards HEAD ERROR
+[DEAD] https://python.org/psf/get-involved/ HEAD ERROR
+[DEAD] https://python.org/psf/community-stories/ HEAD ERROR
+[DEAD] https://python.org/success-stories/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/arts/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/business/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/education/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/engineering/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/government/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/scientific/ HEAD ERROR
+[DEAD] https://python.org/success-stories/category/software-development/ HEAD ERROR
+[DEAD] https://python.org/blogs/ HEAD ERROR
+[DEAD] https://python.org/blogs/ HEAD ERROR
+[DEAD] https://python.org/psf/newsletter/ HEAD ERROR
+[DEAD] http://pyfound.blogspot.com/ HEAD ERROR
+[DEAD] http://pycon.blogspot.com/ HEAD ERROR
+[OK] http://planetpython.org/ HEAD TIMEOUT HEAD 200
+[DEAD] https://python.org/events/ HEAD ERROR
+[DEAD] https://python.org/events/python-events/ HEAD ERROR
+[DEAD] https://python.org/events/python-user-group/ HEAD ERROR
+[DEAD] https://python.org/events/python-events/past/ HEAD ERROR
+[DEAD] https://python.org/events/python-user-group/past/ HEAD ERROR
+[DEAD] https://wiki.python.org/moin/PythonEventsCalendar#Submitting_an_Event HEAD ERROR
+[DEAD] https://python.org/dev/ HEAD ERROR
+[DEAD] https://devguide.python.org/ HEAD ERROR
+[OK] https://github.com/python/cpython/issues HEAD TIMEOUT HEAD 200
+[DEAD] https://mail.python.org/mailman/listinfo/python-dev HEAD ERROR
+[DEAD] https://python.org/dev/core-mentorship/ HEAD ERROR
+[DEAD] https://python.org/dev/security/ HEAD ERROR
+[DEAD] https://python.org#python-network HEAD ERROR
+[DEAD] https://python.org/about/help/ HEAD ERROR
+[DEAD] https://python.org/community/diversity/ HEAD ERROR
+[OK] https://github.com/python/pythondotorg/issues HEAD TIMEOUT HEAD 200
+[DEAD] https://status.python.org/ HEAD TIMEOUT HEAD TIMEOUT
+[DEAD] https://python.org/psf-landing/ HEAD ERROR
+[DEAD] https://python.org/about/legal/ HEAD ERROR
+[DEAD] https://policies.python.org/python.org/Privacy-Notice/ HEAD ERROR
+

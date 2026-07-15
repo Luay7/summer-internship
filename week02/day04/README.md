@@ -51,3 +51,13 @@ Before writing any code, here is the planned roadmap of the bugs that will be in
 * **Symptom:** The script rejected perfectly valid URLs (like `https://python.org`), throwing an `[ERROR] Invalid URL format` and exiting immediately. 
 * **Diagnosis:** The logic in the URL validation `if` statement was inverted. The code checked `if parsed.scheme in ['http', 'https']`, meaning it actively punished and rejected valid protocols instead of allowing them.
 * **Fix Applied:** Re-added the `not` operator to the condition (`if parsed.scheme not in ['http', 'https']`), restoring the correct validation logic.
+
+### Bug 3: The Redundant Scanner (Performance Bug)
+* **Symptom:** The script extracted and scanned the exact same URLs multiple times per session, finding an inflated number of links (212 links). As documented in the attached `output.txt`, URLs like `https://python.org/downloads/` and `https://python.org/blogs/` were repeatedly checked consecutively, wasting bandwidth.
+* **Diagnosis:** The deduplication logic was removed during the extraction phase. The script was appending every discovered `href` to the `links_to_check` list indiscriminately.
+* **Fix Applied:** Re-introduced the membership check (`if absolute_url not in links_to_check:`) before appending new URLs to the target list.
+
+### Bug 4: The Impossible Timeout (Network Error)
+* **Symptom:** Every single extracted link initially failed. As seen clearly in `output.txt`, the terminal was flooded with `[DEAD] ... HEAD ERROR` and `TIMEOUT` logs. Not a single link succeeded on the first attempt.
+* **Diagnosis:** The `timeout` parameter for the primary `requests.head()` call was maliciously altered to `0.001` seconds. Since no standard network request can resolve in one millisecond, it triggered a false-positive `Timeout` for every URL, forcing the script into its slow secondary fallback routine.
+* **Fix Applied:** Restored the realistic default `timeout=5` (seconds) to allow the server sufficient time to respond.

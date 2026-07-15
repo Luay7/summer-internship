@@ -59,7 +59,8 @@ for tag in raw_links:
     # Filter out mailto, javascript, etc. Keep only http/https
     parsed_href = urlparse(absolute_url)
     if parsed_href.scheme in ['http', 'https']:
-        links_to_check.append(absolute_url)
+        if absolute_url not in links_to_check: # Prevent checking duplicates
+            links_to_check.append(absolute_url)
 
 print(f"Found {len(links_to_check)} valid links to check.\n")
 
@@ -73,7 +74,7 @@ for link in links_to_check:
     
     try:
         # First attempt: Fast HEAD request
-        link_resp = requests.head(link, timeout=0.001, allow_redirects=True)
+        link_resp = requests.head(link, timeout=5, allow_redirects=True)
         h_status = link_resp.status_code
         
         # Fallback 1: If server rejects HEAD, try GET
