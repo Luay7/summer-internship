@@ -79,7 +79,7 @@ for link in links_to_check:
         
         # Fallback 1: If server rejects HEAD, try GET
         if h_status in [403, 405]:
-            get_resp = requests.get(link, allow_redirects=True)
+            get_resp = requests.get(link,timeout=5, allow_redirects=True)
             g_status = get_resp.status_code
             
             # Print actual status codes returned by the server

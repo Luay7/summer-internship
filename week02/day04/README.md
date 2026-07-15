@@ -61,3 +61,8 @@ Before writing any code, here is the planned roadmap of the bugs that will be in
 * **Symptom:** Every single extracted link initially failed. As seen clearly in `output.txt`, the terminal was flooded with `[DEAD] ... HEAD ERROR` and `TIMEOUT` logs. Not a single link succeeded on the first attempt.
 * **Diagnosis:** The `timeout` parameter for the primary `requests.head()` call was maliciously altered to `0.001` seconds. Since no standard network request can resolve in one millisecond, it triggered a false-positive `Timeout` for every URL, forcing the script into its slow secondary fallback routine.
 * **Fix Applied:** Restored the realistic default `timeout=5` (seconds) to allow the server sufficient time to respond.
+
+### Bug 5: The Infinite Hang (Critical Network Error)
+* **Symptom:** Under certain conditions, the script would completely freeze. It wouldn't crash, print any error messages, or move to the next link. It just hung indefinitely in the terminal.
+* **Diagnosis:** The `timeout` parameter was entirely omitted from the fallback `requests.get()` call. By default, the `requests` library does not have a timeout. If it encounters a "tarpit" server or a firewall that drops packets silently without closing the connection, the script will wait forever.
+* **Fix Applied:** Enforced a strict `timeout=5` parameter on all network requests (both `HEAD` and `GET`) to ensure the script regains control and handles unresponsive servers gracefully.
