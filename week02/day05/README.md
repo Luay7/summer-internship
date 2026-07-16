@@ -9,3 +9,20 @@ The project will continue from the Day 2 implementation instead of being rebuilt
 The Day 2 version, `v0.3.0`, will be used as the baseline. The improvements found during the Day 3 code review will be added gradually through multiple versions.
 
 Each version will be tested before moving to the next version.
+
+## Version v0.4.0 — Clear Error Handling and Link Extraction
+
+This version improves the readability of the existing code without changing its main behavior.
+
+### Improvements
+
+* Added separate handling for timeout, HTTP, connection, and unexpected network errors.
+* Simplified link extraction by selecting only anchor tags with a valid `href`.
+
+### Testing
+
+* Valid URL scan: Pending.
+* Invalid URL validation: Pending.
+* Connection error handling: Pending.
+* HTTP error handling: Pending.
+* Full link verification: Pending.

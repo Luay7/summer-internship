@@ -1,0 +1,62 @@
+URL: http://127.0.0.1:8000
+Expected: Successful scan (200 OK)
+Starting scan for: http://127.0.0.1:8000
+Delay: 0.1 seconds
+Initialization successful. Ready to fetch...
+
+--------------------------------------------------
+Fetching main page: http://127.0.0.1:8000
+[SUCCESS] Successfully connected to the target URL.
+
+--------------------------------------------------
+Extracting links...
+Found 1 valid links to check.
+
+--------------------------------------------------
+Starting Link Verification...
+[OK] http://127.0.0.1:8000/working HEAD 200
+----------------------------------------
+URL: example.com
+Expected: Invalid URL format
+[ERROR] Invalid URL format.
+Please use a valid URL starting with http:// or https://
+----------------------------------------
+URL: https://connection-test.invalid
+Expected: Connection error
+Starting scan for: https://connection-test.invalid
+Delay: 1.0 seconds
+Initialization successful. Ready to fetch...
+
+--------------------------------------------------
+Fetching main page: https://connection-test.invalid
+
+[FATAL ERROR] Failed to connect to the target website.
+Technical Details: HTTPSConnectionPool(host='connection-test.invalid', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='connection-test.invalid', port=443): Failed to resolve 'connection-test.invalid' ([Errno -2] Name or service not known)"))
+Please check your internet connection or verify that the domain is online.
+----------------------------------------
+URL: http://127.0.0.1:8000/404
+Expected: HTTP error 404
+Starting scan for: http://127.0.0.1:8000/404
+Delay: 1.0 seconds
+Initialization successful. Ready to fetch...
+
+--------------------------------------------------
+Fetching main page: http://127.0.0.1:8000/404
+
+[FATAL ERROR] The target website returned an HTTP error.
+HTTP Status: 404
+Technical Details: 404 Client Error: Not Found for url: http://127.0.0.1:8000/404
+----------------------------------------
+URL: http://127.0.0.1:8000/503
+Expected: HTTP error 503
+Starting scan for: http://127.0.0.1:8000/503
+Delay: 1.0 seconds
+Initialization successful. Ready to fetch...
+
+--------------------------------------------------
+Fetching main page: http://127.0.0.1:8000/503
+
+[FATAL ERROR] The target website returned an HTTP error.
+HTTP Status: 503
+Technical Details: 503 Server Error: Service Unavailable for url: http://127.0.0.1:8000/503
+----------------------------------------
