@@ -1,0 +1,10 @@
+{
+    "Ch01.txt": {
+        "input_sha256": "61710dc27a8089cf5cbac712af51b5e781be1860761b63babb3bf2393e1433b5",
+        "chunk_signature": "4f58edf21f7ea82446d0c1c97000753f98e36341647aa35f5acce6efa4796eac",
+        "embedding_model": "mxbai-embed-large",
+        "breakpoint_percentile": 70.0,
+        "chunking_version": 1,
+        "chunks_file": "chunked_docs/Ch01_chunks.txt"
+    }
+}
