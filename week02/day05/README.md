@@ -47,3 +47,26 @@ After cleaning and filtering the links, the program correctly found and checked 
 * URL fragment removal: Passed.
 * Duplicate link filtering: Passed.
 * Unique link count: Passed.
+
+## Version v1.0.0 — Final Stable Release
+
+This version completes the planned improvements and prepares the project for final submission.
+
+### Improvements
+
+* Improved the fallback strategy for HEAD responses such as `401`, `403`, `405`, `429`, and `500`.
+* Added streaming GET requests to avoid downloading large files.
+* Applied the same GET fallback after a retried HEAD request.
+* Added timestamps to all link verification results.
+* Reorganized the script into clear and reusable functions.
+* Added a `main()` entry point.
+
+### Docker and Final Testing
+
+The final version was packaged and tested inside Docker using the host network.
+
+The complete test suite covered all available decision branches in the current code. The HTTP integration test passed, and all 18 timeout and error branch tests passed successfully.
+
+The application worked correctly inside the Docker container, and the final test result was `PASSED`.
+
+Full test details are available in `docker_output.txt`.

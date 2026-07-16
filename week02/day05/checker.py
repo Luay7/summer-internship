@@ -1,157 +1,227 @@
+# Improvement 7: Code Modularization
+# The final version reorganizes the code into reusable functions (methods) instead of one long execution flow.
+
 import argparse
 import sys
 import time
+from datetime import datetime
+from urllib.parse import urljoin, urldefrag, urlparse
+
 import requests
-from urllib.parse import urlparse, urljoin, urldefrag
 from bs4 import BeautifulSoup
 
-# 1. Setup CLI arguments
-parser = argparse.ArgumentParser(description="CLI Broken Link Checker")
-parser.add_argument("url", help="Target URL to scan")
-parser.add_argument("--delay", type=float, default=1.0, help="Delay between requests in seconds")
 
-args = parser.parse_args()
-target_url = args.url
-delay = args.delay
+def parse_arguments():
+    """Read command-line arguments."""
+    parser = argparse.ArgumentParser(description="CLI Broken Link Checker")
+    parser.add_argument("url", help="Target URL to scan")
+    parser.add_argument("--delay", type=float, default=1.0, help="Delay between requests in seconds")
+    return parser.parse_args()
 
-# 2. Validate URL format
-parsed = urlparse(target_url)
-if parsed.scheme not in ['http', 'https'] or not parsed.netloc:
-    print("[ERROR] Invalid URL format.")
-    print("Please use a valid URL starting with http:// or https://")
-    sys.exit(1)
 
-# 3. Print initialization status
-print(f"Starting scan for: {target_url}")
-print(f"Delay: {delay} seconds")
-print("Initialization successful. Ready to fetch...\n")
+def validate_url(target_url):
+    """Return True when the target URL is a valid HTTP or HTTPS URL."""
+    parsed = urlparse(target_url)
 
-# 4. Network Fetch & Graceful Error Handling
-print("-" * 50)
-print(f"Fetching main page: {target_url}")
+    if parsed.scheme not in ["http", "https"] or not parsed.netloc:
+        print("[ERROR] Invalid URL format.")
+        print("Please use a valid URL starting with http:// or https://")
+        return False
 
-try:
-    response = requests.get(target_url, timeout=10)
-    response.raise_for_status()
-    print("[SUCCESS] Successfully connected to the target URL.\n")
-    html_content = response.text
+    return True
 
-# Improvement 1: Granular Network Error Handling
-# Different network errors now display specific and clear messages.
-except requests.exceptions.Timeout as e:
-    print("\n[FATAL ERROR] The request timed out.")
-    print(f"Technical Details: {e}")
-    print("The target website took too long to respond.")
-    sys.exit(1)
 
-except requests.exceptions.HTTPError as e:
-    print("\n[FATAL ERROR] The target website returned an HTTP error.")
-    print(f"HTTP Status: {e.response.status_code}")
-    print(f"Technical Details: {e}")
-    sys.exit(1)
+def fetch_page(target_url):
+    """Fetch the target page and return its HTML content."""
+    print("-" * 50)
+    print(f"Fetching main page: {target_url}")
 
-except requests.exceptions.ConnectionError as e:
-    print("\n[FATAL ERROR] Failed to connect to the target website.")
-    print(f"Technical Details: {e}")
-    print("Please check your internet connection or verify that the domain is online.")
-    sys.exit(1)
-
-except requests.exceptions.RequestException as e:
-    print("\n[FATAL ERROR] An unexpected network error occurred.")
-    print(f"Technical Details: {e}")
-    sys.exit(1)
-
-# 5. Extract and Filter Links
-print("-" * 50)
-print("Extracting links...")
-soup = BeautifulSoup(html_content, 'html.parser')
-
-# Improvement 2: Simplified Link Extraction
-# BeautifulSoup now extracts only anchor tags that contain a non-empty href.
-raw_links = soup.find_all('a', href=lambda href: href and href.strip())
-
-# Improvement 3: Faster Duplicate Filtering
-# A set automatically prevents duplicate URLs and provides faster lookup.
-links_to_check = set()
-
-for tag in raw_links:
-    href = tag.get('href')
-        
-    # Convert relative links (like /about) to absolute links (https://site.com/about)
-    absolute_url = urljoin(target_url, href)
-
-    # Improvement 4: Remove URL Fragments
-    # Links such as /page#top and /page#content are treated as the same URL.
-    clean_url, fragment = urldefrag(absolute_url)
-    
-    # Filter out mailto, javascript, etc. Keep only http/https
-    parsed_href = urlparse(clean_url)
-    if parsed_href.scheme in ['http', 'https']:
-        links_to_check.add(clean_url)
-
-print(f"Found {len(links_to_check)} unique valid links to check.\n")
-
-# 6. Smart Verification & Fallback Strategy
-print("-" * 50)
-print("Starting Link Verification...")
-
-for link in links_to_check:
-    # Apply user-defined delay before each request
-    time.sleep(delay)
-    
     try:
-        # First attempt: Fast HEAD request
-        link_resp = requests.head(link, timeout=5, allow_redirects=True)
-        h_status = link_resp.status_code
-        
-        # Fallback 1: If server rejects HEAD, try GET
-        if h_status in [403, 405]:
-            get_resp = requests.get(link, timeout=5, allow_redirects=True)
-            g_status = get_resp.status_code
-            
-            # Print actual status codes returned by the server
-            if g_status < 400:
-                print(f"[PROTECTED] {link} HEAD {h_status} GET {g_status}")
-            elif g_status == 503:
-                print(f"[UNAVAILABLE] {link} HEAD {h_status} GET {g_status}")
-            elif g_status == 404:
-                print(f"[DEAD] {link} HEAD {h_status} GET {g_status}")
-            else:
-                print(f"[BLOCKED] {link} HEAD {h_status} GET {g_status}")
+        response = requests.get(target_url, timeout=10)
+        response.raise_for_status()
+        print("[SUCCESS] Successfully connected to the target URL.\n")
+        return response.text
+
+    # Improvement 1: Granular Network Error Handling
+    # Different network errors now display specific and clear messages.
+    except requests.exceptions.Timeout as error:
+        print("\n[FATAL ERROR] The request timed out.")
+        print(f"Technical Details: {error}")
+        print("The target website took too long to respond.")
+
+    except requests.exceptions.HTTPError as error:
+        print("\n[FATAL ERROR] The target website returned an HTTP error.")
+        print(f"HTTP Status: {error.response.status_code}")
+        print(f"Technical Details: {error}")
+
+    except requests.exceptions.ConnectionError as error:
+        print("\n[FATAL ERROR] Failed to connect to the target website.")
+        print(f"Technical Details: {error}")
+        print("Please check your internet connection or verify that the domain is online.")
+
+    except requests.exceptions.RequestException as error:
+        print("\n[FATAL ERROR] An unexpected network error occurred.")
+        print(f"Technical Details: {error}")
+
+    return None
+
+
+def extract_links(html_content, target_url):
+    """Extract unique HTTP and HTTPS links from the target page."""
+    print("-" * 50)
+    print("Extracting links...")
+
+    soup = BeautifulSoup(html_content, "html.parser")
+
+    # Improvement 2: Simplified Link Extraction
+    # BeautifulSoup now extracts only anchor tags that contain a non-empty href.
+    raw_links = soup.find_all("a", href=lambda href: href and href.strip())
+
+    # Improvement 3: Faster Duplicate Filtering
+    # A set automatically prevents duplicate URLs and provides faster lookup.
+    links_to_check = set()
+
+    for tag in raw_links:
+        href = tag.get("href")
+
+        # Convert relative links into absolute links.
+        absolute_url = urljoin(target_url, href)
+
+        # Improvement 4: Remove URL Fragments
+        # Links such as /page#top and /page#content are treated as the same URL.
+        clean_url, _ = urldefrag(absolute_url)
+
+        # Keep only HTTP and HTTPS links.
+        parsed_href = urlparse(clean_url)
+        if parsed_href.scheme in ["http", "https"]:
+            links_to_check.add(clean_url)
+
+    print(f"Found {len(links_to_check)} unique valid links to check.\n")
+    return links_to_check
+
+
+def log_result(classification, link, request_history):
+    """Print one structured result with a timestamp."""
+    # Specification Completion: Timestamped Structured Logging
+    # Every result now includes the exact time, classification, URL, and request history.
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"[{timestamp}] [{classification}] {link} | {request_history}")
+
+
+def verify_with_get(link, head_history):
+    """Use a streaming GET fallback after an unsuccessful HEAD response."""
+    try:
+        # Improvement 6: Streaming Fallback Requests
+        # stream=True reads the response status without downloading the full response body.
+        with requests.get(link, timeout=5, allow_redirects=True, stream=True) as get_resp:
+            get_status = get_resp.status_code
+
+        if get_status < 400:
+            log_result("PROTECTED", link, f"{head_history} -> GET {get_status}")
+        elif get_status == 404:
+            log_result("DEAD", link, f"{head_history} -> GET {get_status}")
+        elif get_status == 503:
+            log_result("UNAVAILABLE", link, f"{head_history} -> GET {get_status}")
         else:
-            # Print actual HEAD status code
-            if h_status < 400:
-                print(f"[OK] {link} HEAD {h_status}")
-            elif h_status == 503:
-                print(f"[UNAVAILABLE] {link} HEAD {h_status}")
-            elif h_status == 404:
-                print(f"[DEAD] {link} HEAD {h_status}")
-            else:
-                print(f"[BROKEN] {link} HEAD {h_status}")
-                
+            log_result("BLOCKED", link, f"{head_history} -> GET {get_status}")
+
     except requests.exceptions.Timeout:
-        # Fallback 2: Retry HEAD once on timeout
+        # Retry GET once when the first streaming request times out.
         try:
-            retry_resp = requests.head(link, timeout=5, allow_redirects=True)
-            r_status = retry_resp.status_code
-            
-            # If the retry succeeds, log the actual recovered status code
-            if r_status < 400:
-                print(f"[OK] {link} HEAD TIMEOUT HEAD {r_status}")
-            elif r_status == 503:
-                print(f"[UNAVAILABLE] {link} HEAD TIMEOUT HEAD {r_status}")
-            elif r_status == 404:
-                print(f"[DEAD] {link} HEAD TIMEOUT HEAD {r_status}")
+            with requests.get(link, timeout=2, allow_redirects=True, stream=True) as retry_get:
+                retry_get_status = retry_get.status_code
+
+            if retry_get_status < 400:
+                log_result("PROTECTED", link, f"{head_history} -> GET TIMEOUT -> GET {retry_get_status}")
+            elif retry_get_status == 404:
+                log_result("DEAD", link, f"{head_history} -> GET TIMEOUT -> GET {retry_get_status}")
+            elif retry_get_status == 503:
+                log_result("UNAVAILABLE", link, f"{head_history} -> GET TIMEOUT -> GET {retry_get_status}")
             else:
-                print(f"[BROKEN] {link} HEAD TIMEOUT HEAD {r_status}")
-                
+                log_result("BLOCKED", link, f"{head_history} -> GET TIMEOUT -> GET {retry_get_status}")
+
         except requests.exceptions.Timeout:
-            # If it times out again, there is no status code to print
-            print(f"[DEAD] {link} HEAD TIMEOUT HEAD TIMEOUT")
+            log_result("TIMEOUT", link, f"{head_history} -> GET TIMEOUT -> GET TIMEOUT")
+
         except requests.exceptions.RequestException:
-            # If the retry results in a connection error
-            print(f"[DEAD] {link} HEAD TIMEOUT HEAD ERROR")
-            
+            log_result("BLOCKED", link, f"{head_history} -> GET TIMEOUT -> GET ERROR")
+
     except requests.exceptions.RequestException:
-        # Catch other connection errors where no status code is returned
-        print(f"[DEAD] {link} HEAD ERROR")
+        log_result("BLOCKED", link, f"{head_history} -> GET ERROR")
+
+
+def handle_head_status(link, head_status, head_history):
+    """Classify a HEAD response or start the GET fallback strategy."""
+    # Improvement 5: Improved Fallback Strategy
+    # Any HEAD error or protection status uses GET fallback, except clear 404 and 503 results.
+    if head_status < 400:
+        log_result("OK", link, head_history)
+    elif head_status == 404:
+        log_result("DEAD", link, head_history)
+    elif head_status == 503:
+        log_result("UNAVAILABLE", link, head_history)
+    else:
+        verify_with_get(link, head_history)
+
+
+def check_link(link):
+    """Check one link using HEAD, retry, and GET fallback when required."""
+    try:
+        link_resp = requests.head(link, timeout=5, allow_redirects=True)
+        head_status = link_resp.status_code
+        handle_head_status(link, head_status, f"HEAD {head_status}")
+
+    except requests.exceptions.Timeout:
+        # Retry HEAD once after a timeout.
+        try:
+            retry_resp = requests.head(link, timeout=2, allow_redirects=True)
+            retry_status = retry_resp.status_code
+
+            # The retried HEAD response now uses the same fallback strategy as the first attempt.
+            handle_head_status(link, retry_status, f"HEAD TIMEOUT -> HEAD {retry_status}")
+
+        except requests.exceptions.Timeout:
+            log_result("TIMEOUT", link, "HEAD TIMEOUT -> HEAD TIMEOUT")
+
+        except requests.exceptions.RequestException:
+            log_result("ERROR", link, "HEAD TIMEOUT -> HEAD ERROR")
+
+    except requests.exceptions.RequestException:
+        log_result("ERROR", link, "HEAD ERROR")
+
+
+def verify_links(links_to_check, delay):
+    """Check every extracted link sequentially."""
+    print("-" * 50)
+    print("Starting Link Verification...")
+
+    for link in links_to_check:
+        time.sleep(delay)
+        check_link(link)
+
+
+def main():
+    """Run the CLI Broken Link Checker."""
+    args = parse_arguments()
+    target_url = args.url
+    delay = args.delay
+
+    if not validate_url(target_url):
+        sys.exit(1)
+
+    print(f"Starting scan for: {target_url}")
+    print(f"Delay: {delay} seconds")
+    print("Initialization successful. Ready to fetch...\n")
+
+    html_content = fetch_page(target_url)
+    if html_content is None:
+        sys.exit(1)
+
+    links_to_check = extract_links(html_content, target_url)
+    verify_links(links_to_check, delay)
+
+
+if __name__ == "__main__":
+    main()
+
+

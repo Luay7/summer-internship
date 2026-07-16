@@ -16,18 +16,18 @@ Found 12 unique valid links to check.
 
 --------------------------------------------------
 Starting Link Verification...
-[2026-07-16 13:19:25] [OK] http://127.0.0.1:8000/ok-200 | HEAD 200
-[2026-07-16 13:19:25] [DEAD] http://127.0.0.1:8000/dead-404 | HEAD 404
-[2026-07-16 13:19:25] [UNAVAILABLE] http://127.0.0.1:8000/unavailable-503 | HEAD 503
-[2026-07-16 13:19:25] [BLOCKED] http://127.0.0.1:8000/head-500-get-429 | HEAD 500 -> GET 429
-[2026-07-16 13:19:25] [PROTECTED] http://127.0.0.1:8000/head-401-get-200 | HEAD 401 -> GET 200
-[2026-07-16 13:19:25] [PROTECTED] http://127.0.0.1:8000/large-file | HEAD 403 -> GET 200
-[2026-07-16 13:19:25] [BLOCKED] http://127.0.0.1:8000/head-403-get-500 | HEAD 403 -> GET 500
-[2026-07-16 13:19:25] [PROTECTED] http://127.0.0.1:8000/head-403-get-204 | HEAD 403 -> GET 204
-[2026-07-16 13:19:25] [UNAVAILABLE] http://127.0.0.1:8000/head-429-get-503 | HEAD 429 -> GET 503
-[2026-07-16 13:19:25] [OK] http://127.0.0.1:8000/ok-204 | HEAD 204
-[2026-07-16 13:19:25] [OK] http://127.0.0.1:8000/redirect-ok | HEAD 200
-[2026-07-16 13:19:25] [DEAD] http://127.0.0.1:8000/head-405-get-404 | HEAD 405 -> GET 404
+[2026-07-16 10:25:06] [DEAD] http://127.0.0.1:8000/dead-404 | HEAD 404
+[2026-07-16 10:25:06] [BLOCKED] http://127.0.0.1:8000/head-403-get-500 | HEAD 403 -> GET 500
+[2026-07-16 10:25:06] [PROTECTED] http://127.0.0.1:8000/head-401-get-200 | HEAD 401 -> GET 200
+[2026-07-16 10:25:06] [OK] http://127.0.0.1:8000/redirect-ok | HEAD 200
+[2026-07-16 10:25:06] [UNAVAILABLE] http://127.0.0.1:8000/unavailable-503 | HEAD 503
+[2026-07-16 10:25:06] [DEAD] http://127.0.0.1:8000/head-405-get-404 | HEAD 405 -> GET 404
+[2026-07-16 10:25:06] [BLOCKED] http://127.0.0.1:8000/head-500-get-429 | HEAD 500 -> GET 429
+[2026-07-16 10:25:06] [OK] http://127.0.0.1:8000/ok-204 | HEAD 204
+[2026-07-16 10:25:06] [OK] http://127.0.0.1:8000/ok-200 | HEAD 200
+[2026-07-16 10:25:06] [PROTECTED] http://127.0.0.1:8000/head-403-get-204 | HEAD 403 -> GET 204
+[2026-07-16 10:25:06] [UNAVAILABLE] http://127.0.0.1:8000/head-429-get-503 | HEAD 429 -> GET 503
+[2026-07-16 10:25:06] [PROTECTED] http://127.0.0.1:8000/large-file | HEAD 403 -> GET 200
 Integration Test Result: Passed
 ----------------------------------------
 Deterministic Timeout and Error Branch Tests
