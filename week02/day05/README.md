@@ -26,3 +26,24 @@ This version improves the readability of the existing code without changing its 
 * Connection error handling: Passed.
 * HTTP error handling: Passed.
 * Full link verification: Passed.
+
+## Version v0.5.0 — Link Accuracy and Efficiency
+
+This version improves how links are stored and checked.
+
+### Improvements
+
+* Removed URL fragments before checking links.
+* Replaced the link list with a `set`.
+* Prevented duplicate links from being checked more than once.
+* Updated the link count to show only unique valid links.
+
+### Testing
+
+A local test page was created with seven link elements. Some links were duplicated, and some contained URL fragments.
+
+After cleaning and filtering the links, the program correctly found and checked only three unique links.
+
+* URL fragment removal: Passed.
+* Duplicate link filtering: Passed.
+* Unique link count: Passed.

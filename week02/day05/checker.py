@@ -2,7 +2,7 @@ import argparse
 import sys
 import time
 import requests
-from urllib.parse import urlparse, urljoin
+from urllib.parse import urlparse, urljoin, urldefrag
 from bs4 import BeautifulSoup
 
 # 1. Setup CLI arguments
@@ -70,20 +70,26 @@ soup = BeautifulSoup(html_content, 'html.parser')
 # BeautifulSoup now extracts only anchor tags that contain a non-empty href.
 raw_links = soup.find_all('a', href=lambda href: href and href.strip())
 
-links_to_check = []
+# Improvement 3: Faster Duplicate Filtering
+# A set automatically prevents duplicate URLs and provides faster lookup.
+links_to_check = set()
+
 for tag in raw_links:
     href = tag.get('href')
         
     # Convert relative links (like /about) to absolute links (https://site.com/about)
     absolute_url = urljoin(target_url, href)
+
+    # Improvement 4: Remove URL Fragments
+    # Links such as /page#top and /page#content are treated as the same URL.
+    clean_url, fragment = urldefrag(absolute_url)
     
     # Filter out mailto, javascript, etc. Keep only http/https
-    parsed_href = urlparse(absolute_url)
+    parsed_href = urlparse(clean_url)
     if parsed_href.scheme in ['http', 'https']:
-        if absolute_url not in links_to_check: # Prevent checking duplicates
-            links_to_check.append(absolute_url)
+        links_to_check.add(clean_url)
 
-print(f"Found {len(links_to_check)} valid links to check.\n")
+print(f"Found {len(links_to_check)} unique valid links to check.\n")
 
 # 6. Smart Verification & Fallback Strategy
 print("-" * 50)

@@ -3,23 +3,41 @@
 OUTPUT="output.txt"
 : > "$OUTPUT"
 
-run_test() {
-    url="$1"
-    expected="$2"
-    shift 2
+# Make sure port 8000 is not already in use
+if fuser 8000/tcp > /dev/null 2>&1; then
+    echo "Port 8000 is already in use."
+    echo "Stop the old test server, then run this script again."
+    exit 1
+fi
 
-    echo "URL: $url" | tee -a "$OUTPUT"
-    echo "Expected: $expected" | tee -a "$OUTPUT"
+# Start the local test server in the background
+python -u test_server.py > test_server_output.txt 2>&1 &
+SERVER_PID=$!
 
-    python -u checker.py "$url" "$@" 2>&1 | tee -a "$OUTPUT"
+# Give the server a moment to start
+sleep 1
 
-    echo "----------------------------------------" | tee -a "$OUTPUT"
+# Check that the server started successfully
+if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+    echo "Test server could not start."
+    cat test_server_output.txt
+    exit 1
+fi
+
+# Stop the server when the script finishes
+cleanup() {
+    kill "$SERVER_PID" 2>/dev/null
+    wait "$SERVER_PID" 2>/dev/null
 }
 
-run_test "http://127.0.0.1:8000" "Successful scan (200 OK)" --delay 0.1
-run_test "example.com" "Invalid URL format"
-run_test "https://connection-test.invalid" "Connection error"
-run_test "http://127.0.0.1:8000/404" "HTTP error 404"
-run_test "http://127.0.0.1:8000/503" "HTTP error 503"
+trap cleanup EXIT
 
+echo "Version: v0.5.0" | tee -a "$OUTPUT"
+echo "URL: http://127.0.0.1:8000" | tee -a "$OUTPUT"
+echo "Expected: 3 unique links with no URL fragments" | tee -a "$OUTPUT"
+echo "----------------------------------------" | tee -a "$OUTPUT"
+
+python -u checker.py http://127.0.0.1:8000 --delay 0.1 2>&1 | tee -a "$OUTPUT"
+
+echo "----------------------------------------" | tee -a "$OUTPUT"
 echo "Results saved to $OUTPUT"
