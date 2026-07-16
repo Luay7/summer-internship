@@ -53,6 +53,21 @@ The program now:
 
 The application uses the `ollama` Python package to communicate with the local model and `fpdf2` to generate PDF files.
 
+### Stage 3: Docker and Final Project Setup
+
+The third stage packages the application inside a Docker container.
+
+This stage includes:
+
+* Creating a `Dockerfile`.
+* Installing the required Python libraries from `requirements.txt`.
+* Building the Docker image successfully.
+* Using the host network to allow the container to connect to the local Ollama service.
+* Organizing the sample input and generated output files inside the `examples` directory.
+* Completing the final project documentation.
+
+Ollama and the `gemma3:1b` model run locally on the host machine, while the Python application and its dependencies are packaged inside the Docker container.
+
 ## Current Application Workflow
 
 The current version follows these steps:
