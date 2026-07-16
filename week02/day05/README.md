@@ -21,8 +21,8 @@ This version improves the readability of the existing code without changing its 
 
 ### Testing
 
-* Valid URL scan: Pending.
-* Invalid URL validation: Pending.
-* Connection error handling: Pending.
-* HTTP error handling: Pending.
-* Full link verification: Pending.
+* Valid URL scan: Passed.
+* Invalid URL validation: Passed.
+* Connection error handling: Passed.
+* HTTP error handling: Passed.
+* Full link verification: Passed.
