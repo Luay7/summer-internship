@@ -1,0 +1,6 @@
+.venv/
+.git/
+__pycache__/
+*.pyc
+summary.txt
+summary.pdf
