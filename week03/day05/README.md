@@ -98,8 +98,91 @@ The next iteration will update:
 
 The first test successfully identified requirements that must be made more explicit before the implementation can be evaluated reliably.
 
-## Next Iteration
+## Iteration 2: Final Implementation
 
-After revising the three project documents, the same implementation request will be submitted again.
+Based on the issues found during the first test, the project documents were updated to clarify:
 
-The second generated result will be compared with the updated specification to determine whether the documentation changes reduced ambiguity and improved compliance.
+* The required four-file Python structure.
+* The responsibility of each source file.
+* UTF-8 input and output requirements.
+* Local Ollama integration.
+* The required embedding and summarization models.
+* GPU-enabled Stanza processing.
+* The exact semantic-chunking method.
+* The required order of Phase 1 and Phase 2.
+* Error handling and output requirements.
+
+The updated documents were provided to the AI model again, and the second implementation followed the required architecture more accurately.
+
+## Final Project Structure
+
+```text
+project/code/
+├── config.py
+├── main.py
+├── phase1.py
+├── phase2.py
+├── requirements.txt
+├── setup.sh
+├── processing_registry.json
+├── inputs/
+└── outputs/
+    ├── chunks/
+    └── summaries/
+```
+
+The project uses:
+
+* `mxbai-embed-large` for semantic embeddings.
+* `llama3` for Map-Reduce summarization.
+* Stanza with GPU enabled for sentence segmentation.
+* UTF-8 `.txt` files as input.
+* SHA-256 hashes to validate saved processing results.
+* Semantic chunking with paragraph preparation and buffer-1 context windows.
+
+## Execution Test
+
+The project was tested using a UTF-8 text file containing Chapters I and II of *Alice’s Adventures in Wonderland*.
+
+The setup script completed successfully, and the complete project ran without stopping.
+
+The system successfully:
+
+1. Validated and processed the input file.
+2. Generated and saved the semantic chunks.
+3. Updated the processing registry.
+4. Created five ordered partial summaries.
+5. Saved the partial summaries.
+6. Combined them through the Reduce stage.
+7. Generated and saved one final summary.
+
+The final summary covered the main events in their original order. Minor wording issues appeared in the generated summary, but the complete technical pipeline worked successfully and produced all required outputs.
+
+## Final Status
+
+**Passed — The project was successfully set up, executed locally, and produced the required intermediate and final outputs.**
+
+## Running the Project
+
+Run the setup script first:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+After the setup completes, run the project:
+
+```bash
+python main.py
+```
+
+The input UTF-8 `.txt` files must be placed inside the `inputs` directory before running `main.py`.
+
+## Final Outcome
+
+The testing process showed that clear documentation improves the accuracy of AI-generated software.
+
+The first implementation revealed missing and ambiguous requirements. After updating `README.md`, `spec.md`, and `system-prompt.md`, the second implementation followed the intended architecture and processing workflow.
+
+The final project was successfully installed, tested, and executed locally.

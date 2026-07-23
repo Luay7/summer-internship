@@ -1,29 +1,66 @@
-# main.py
 import glob
-from config import STANZA_LANG
-from nlp_core import init_stanza_pipeline
-from phase1_prep import process_file_phase1
-from phase2_summary import process_file_phase2
+import os
+
+from config import INPUT_DIR
+
+import phase1
+import phase2
+
 
 def main():
-    """Main execution workflow for processing multiple local .txt files."""
-    input_files = glob.glob("inputs/*.txt")
-    
+    os.makedirs(INPUT_DIR, exist_ok=True)
+
+    input_files = sorted(
+        glob.glob(os.path.join(INPUT_DIR, "*.txt"))
+    )
+
     if not input_files:
-        print("No .txt files found in 'inputs/' directory.")
+        print(
+            f"No .txt files found in "
+            f"'{INPUT_DIR}' directory."
+        )
         return
 
-    print("Initializing Stanza NLP pipeline...")
-    stanza_pipeline = init_stanza_pipeline(STANZA_LANG)
+    ready_files = []
+
+    print("--- BEGINNING PHASE 1 ---")
 
     for filepath in input_files:
-        print(f"\n--- Processing {filepath} ---")
+        print(f"\nEvaluating Phase 1 for {filepath}")
+
         try:
-            phase1_success = process_file_phase1(filepath, stanza_pipeline)
-            if phase1_success:
-                process_file_phase2(filepath)
-        except Exception as e:
-            print(f"Error processing {filepath}: {e}")
+            if phase1.process_file(filepath):
+                ready_files.append(filepath)
+        except Exception as error:
+            print(
+                f"Unexpected error during Phase 1 "
+                f"for {filepath}: {error}"
+            )
+
+    if not ready_files:
+        print(
+            "\nNo files successfully completed "
+            "Phase 1. Exiting."
+        )
+        return
+
+    print("\n--- BEGINNING PHASE 2 ---")
+
+    for filepath in ready_files:
+        print(f"\nEvaluating Phase 2 for {filepath}")
+
+        try:
+            if not phase2.process_file(filepath):
+                print(
+                    f"Phase 2 was not completed "
+                    f"for {filepath}."
+                )
+        except Exception as error:
+            print(
+                f"Unexpected error during Phase 2 "
+                f"for {filepath}: {error}"
+            )
+
 
 if __name__ == "__main__":
     main()

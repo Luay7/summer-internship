@@ -1,0 +1,12 @@
+{
+  "Ch01.txt": {
+    "input_sha256": "6e551eabcb735fca91bffa5bae3fefd257afa62a7e00a1dec2165f26b4650066",
+    "processing_status": "completed",
+    "embedding_model": "mxbai-embed-large",
+    "breakpoint_percentile": 80.0,
+    "buffer_size": 1,
+    "chunking_version": 1,
+    "chunks_file": "outputs/chunks/Ch01_chunks.json",
+    "chunks_sha256": "52e34d3e8d42b4f5694f6388b751447351ed1055fa5782ee3666993d9f1fe469"
+  }
+}
