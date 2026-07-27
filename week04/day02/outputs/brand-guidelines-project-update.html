@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Engineering Training — Week 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #141413;
+    --light: #faf9f5;
+    --mid-gray: #b0aea5;
+    --light-gray: #e8e6dc;
+    --orange: #d97757;
+    --blue: #6a9bcc;
+    --green: #788c5d;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--light-gray);
+    font-family: 'Lora', Georgia, serif;
+    color: var(--dark);
+  }
+  .page {
+    width: 850px;
+    min-height: 1050px;
+    margin: 24px auto;
+    background: var(--light);
+    padding: 56px 64px;
+    box-shadow: 0 4px 24px rgba(20, 20, 19, 0.12);
+  }
+  .header {
+    border-bottom: 3px solid var(--orange);
+    padding-bottom: 20px;
+    margin-bottom: 36px;
+  }
+  .eyebrow {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin: 0 0 10px 0;
+  }
+  h1 {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+  .subtitle {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 17px;
+    color: #4a4943;
+    margin: 0;
+  }
+  .section { margin-bottom: 30px; }
+  .section-title {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  .completed .dot { background: var(--green); }
+  .progress .dot { background: var(--orange); }
+  .next .dot { background: var(--blue); }
+  .completed .section-title { color: var(--green); }
+  .progress .section-title { color: var(--orange); }
+  .next .section-title { color: var(--blue); }
+  .card {
+    background: var(--light-gray);
+    border-left: 4px solid transparent;
+    border-radius: 6px;
+    padding: 18px 22px;
+  }
+  .completed .card { border-left-color: var(--green); }
+  .progress .card { border-left-color: var(--orange); }
+  .next .card { border-left-color: var(--blue); }
+  ul { margin: 0; padding: 0; list-style: none; }
+  li {
+    font-size: 15.5px;
+    line-height: 1.5;
+    padding: 7px 0;
+    position: relative;
+    padding-left: 22px;
+  }
+  li:not(:last-child) { border-bottom: 1px solid rgba(20,20,19,0.08); }
+  li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 17px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+  .completed li::before { background: var(--green); }
+  .progress li::before { background: var(--orange); }
+  .next li::before { background: var(--blue); }
+  .status-tag {
+    display: inline-block;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 2px 9px;
+    border-radius: 10px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+  .completed .status-tag { background: rgba(120,140,93,0.18); color: var(--green); }
+  .progress .status-tag { background: rgba(217,119,87,0.18); color: var(--orange); }
+  .current-focus {
+    margin-top: 12px;
+    font-size: 14.5px;
+    font-style: italic;
+    color: #5a5952;
+    background: var(--light);
+    border: 1px dashed var(--mid-gray);
+    border-radius: 5px;
+    padding: 10px 14px;
+  }
+  .footer {
+    margin-top: 44px;
+    padding-top: 18px;
+    border-top: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 11px;
+    color: var(--mid-gray);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  @media print {
+    body { background: var(--light); }
+    .page { box-shadow: none; margin: 0; width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <p class="eyebrow">Project Update</p>
+      <h1>AI Engineering Training — Week 4</h1>
+      <p class="subtitle">Claude Skills Progress Update</p>
+    </div>
+    <div class="section completed">
+      <p class="section-title"><span class="dot"></span>Completed</p>
+      <div class="card">
+        <ul><li>Day 1 — What is a skill <span class="status-tag">Done</span></li></ul>
+      </div>
+    </div>
+    <div class="section progress">
+      <p class="section-title"><span class="dot"></span>In Progress</p>
+      <div class="card">
+        <ul><li>Day 2 — Using existing skills <span class="status-tag">Active</span></li></ul>
+        <p class="current-focus">Current focus: testing existing Skills and comparing their behavior</p>
+      </div>
+    </div>
+    <div class="section next">
+      <p class="section-title"><span class="dot"></span>Next</p>
+      <div class="card">
+        <ul>
+          <li>Day 3 — The SKILL.md structure</li>
+          <li>Day 4 — Build your own skill</li>
+          <li>Day 5 — Test &amp; chain skills</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI Engineering Training</span>
+      <span>Week 4 of 5</span>
+    </div>
+  </div>
+</body>
+</html>
