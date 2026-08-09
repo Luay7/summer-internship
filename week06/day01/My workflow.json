@@ -6,8 +6,8 @@
         "rule": {
           "interval": [
             {
-              "field": "hours",
-              "hoursInterval": 2
+              "field": "minutes",
+              "minutesInterval": 1
             }
           ]
         }
@@ -83,13 +83,13 @@
       ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
     "availableInMCP": false
   },
-  "versionId": "55d895c1-ae28-4c73-886d-a62a3cccafcc",
+  "versionId": "88dfe010-a069-49ba-ad79-55605d46c487",
   "meta": {
     "instanceId": "8caa5544510d8aed508563385d64d5d2f594c6dcb63e741fe9545833bbff9608"
   },
