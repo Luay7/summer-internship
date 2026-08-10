@@ -1,0 +1,237 @@
+{
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        0
+      ],
+      "id": "0fac3a5f-df65-4947-8056-a1e7cacd0c32",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "473e6dcd-5e8f-4f88-aad7-9cf81c8999d3",
+              "name": "user_request",
+              "value": "Get the currency of Saudi Arabia and compare it to USD",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -96,
+        0
+      ],
+      "id": "2c9725d9-2183-44be-9357-3184802810a0",
+      "name": "Input"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.user_request }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a request extraction agent.\n\nExtract exactly two values from the user's request:\n\n1. country:\n   The country mentioned by the user.\n   Return the country name in English.\n\n2. target_currency:\n   The currency that the user explicitly wants to compare the country's currency TO.\n   Return it as a 3-letter ISO currency code.\n\nIMPORTANT:\n- target_currency is NOT the currency of the country.\n- Do NOT determine or guess the country's own currency.\n- If the user says \"compare it to USD\", target_currency MUST be \"USD\".\n- If the user says \"against EUR\", target_currency MUST be \"EUR\".\n- Do not answer the question.\n- Do not provide exchange rates.\n- Do not calculate anything.\n- Return only valid JSON.\n\nExample:\n\nUser:\nGet the currency of Saudi Arabia and compare it to USD\n\nOutput:\n{\n  \"country\": \"Saudi Arabia\",\n  \"target_currency\": \"USD\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        128,
+        0
+      ],
+      "id": "feaa33f4-06a7-4667-890d-9a52a9c8c2d5",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -16,
+        208
+      ],
+      "id": "34c8d090-0b57-432e-a987-49ec5d90b642",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "BG6blGkc7qI9RAQC",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"country\": \"Saudi Arabia\",\n  \"target_currency\": \"USD\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        304,
+        208
+      ],
+      "id": "8da17c2e-3577-4398-8564-d54b2d67a055",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "url": "=https://countries.dev/name/{{ $json.output.country }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        432,
+        0
+      ],
+      "id": "5cca7594-8b3c-47de-ac2a-ff18bc40b9ab",
+      "name": "Get Country Currency"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Country: {{ $('AI Agent').item.json.output.country }}\n\nBase currency: {{ $json.base_code }}\n\nTarget currency: {{ $('AI Agent').item.json.output.target_currency }}\n\nExchange rate: {{ $json.rates[$('AI Agent').item.json.output.target_currency] }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Create a short final answer using the following data.\n\nCountry:\n{{ $('AI Agent').item.json.output.country }}\n\nBase currency:\n{{ $json.base_code }}\n\nTarget currency:\n{{ $('AI Agent').item.json.output.target_currency }}\n\nExchange rate:\n{{ $json.rates[$('AI Agent').item.json.output.target_currency] }}\n\nRules:\n- State the country's currency.\n- State the exchange rate as: 1 BASE = RATE TARGET.\n- Do not calculate any amount.\n- Do not add extra explanation.\n- Maximum two sentences."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        816,
+        0
+      ],
+      "id": "c6c12fb7-d7fc-49bd-9868-0f7aeb481330",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "url": "=https://open.er-api.com/v6/latest/{{ $json.currencies[0].code }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        592,
+        0
+      ],
+      "id": "da880d4c-bfe8-4eed-a58e-db2238c9f872",
+      "name": "Get Exchange Rate"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Get Country Currency",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Country Currency": {
+      "main": [
+        [
+          {
+            "node": "Get Exchange Rate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Exchange Rate": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "715752c6-1976-4281-bb56-97b581c28bad",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8caa5544510d8aed508563385d64d5d2f594c6dcb63e741fe9545833bbff9608"
+  },
+  "nodeGroups": [],
+  "id": "nKSW3veBpQ0t0jFi",
+  "tags": []
+}
