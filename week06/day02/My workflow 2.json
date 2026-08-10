@@ -1,0 +1,174 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        0
+      ],
+      "id": "37b80cd8-eb8e-45cc-9ba9-e3ebcee8a483",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "=https://countries.dev/name/{{ $json.country }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -160,
+        0
+      ],
+      "id": "9d0f1682-364e-4039-867e-753deb054e68",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "=https://open.er-api.com/v6/latest/{{ $json.currencies[0].code }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -16,
+        0
+      ],
+      "id": "0f4baf43-04b7-4fff-851d-46fe9802c633",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "37e83193-835f-470d-a913-86cb6dd182c3",
+              "name": "country",
+              "value": "={{ $('Input').item.json.country }}",
+              "type": "string"
+            },
+            {
+              "id": "e57be13d-a85a-4207-b04d-8724f659705e",
+              "name": "base_currency",
+              "value": "={{ $json.base_code }}",
+              "type": "string"
+            },
+            {
+              "id": "58d8fece-060c-4ce3-ba90-ea7e3442b6ab",
+              "name": "target_currency",
+              "value": "={{ $('Input').item.json.target_currency }}",
+              "type": "string"
+            },
+            {
+              "id": "69d0ecf1-c536-4e3f-8da1-b43dbe8d6c49",
+              "name": "exchange_rate",
+              "value": "={{ $json.rates[$('Input').item.json.target_currency] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        128,
+        0
+      ],
+      "id": "b4118fd3-706d-4fef-9cdf-43717b71f346",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d55c3c8-17ba-4f08-8cfc-5b9defedb813",
+              "name": "country",
+              "value": "Saudi Arabia",
+              "type": "string"
+            },
+            {
+              "id": "4b5a1278-2560-4fea-9a13-06c14b5a1aa2",
+              "name": "target_currency",
+              "value": "USD",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -304,
+        0
+      ],
+      "id": "4e2b0d4a-5ee7-4e33-a7fa-2c71cbba8bef",
+      "name": "Input"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "b8377f28-7062-4452-aba3-58f1a4851ff6",
+  "meta": {
+    "instanceId": "8caa5544510d8aed508563385d64d5d2f594c6dcb63e741fe9545833bbff9608"
+  },
+  "nodeGroups": [],
+  "id": "G02sL48aKGK4f4OS",
+  "tags": []
+}
