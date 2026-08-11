@@ -1,0 +1,983 @@
+{
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        0
+      ],
+      "id": "1d753ba5-4085-44b0-9eb5-8eda0586d711",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "473e6dcd-5e8f-4f88-aad7-9cf81c8999d3",
+              "name": "user_request",
+              "value": "Get the currency of Saudi Arabia and compare it to USD",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        0,
+        0
+      ],
+      "id": "243d8c6d-0be6-493b-9213-1a6b83cee667",
+      "name": "Input"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Input').first().json.user_request }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a request extraction agent.\n\nExtract exactly two values from the user's request:\n\n1. country:\n   The country mentioned by the user.\n   Return the country name in English.\n\n2. target_currency:\n   The currency that the user explicitly wants to compare the country's currency TO.\n   Return it as a 3-letter ISO currency code.\n\nIMPORTANT:\n- target_currency is NOT the currency of the country.\n- Do NOT determine or guess the country's own currency.\n- If the user says \"compare it to USD\", target_currency MUST be \"USD\".\n- If the user says \"against EUR\", target_currency MUST be \"EUR\".\n- Do not answer the question.\n- Do not provide exchange rates.\n- Do not calculate anything.\n- Return only valid JSON.\n\nExample:\n\nUser:\nGet the currency of Saudi Arabia and compare it to USD\n\nOutput:\n{\n  \"country\": \"Saudi Arabia\",\n  \"target_currency\": \"USD\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        128,
+        0
+      ],
+      "id": "77d09466-d63f-4e71-af04-6b78e023e0cc",
+      "name": "AI Agent",
+      "retryOnFail": true,
+      "waitBetweenTries": 1000,
+      "maxTries": 2,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        128,
+        176
+      ],
+      "id": "5cc12ba9-cd4c-46ed-80cd-7abb4b3e9f98",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "SxMMowXvXkEXPMhT",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"country\": \"Saudi Arabia\",\n  \"target_currency\": \"USD\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        272,
+        176
+      ],
+      "id": "8c9ff686-9aad-445c-93f9-ede6e6b4e77e",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "url": "=https://countries.dev/name/{{ $('AI Agent').first().json.output.country }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        416,
+        0
+      ],
+      "id": "6ecb5d3e-b731-4f8a-b551-ebfa5c8fc71c",
+      "name": "Get Country Currency",
+      "retryOnFail": true,
+      "waitBetweenTries": 500,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Country: {{ $('AI Agent').first().json.output.country }}\n\nBase currency: {{ $('Get Exchange Rate').first().json.base_code }}\n\nTarget currency: {{ $('AI Agent').first().json.output.target_currency }}\n\nExchange rate: {{ $('Get Exchange Rate').first().json.rates[$('AI Agent').first().json.output.target_currency] }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are a currency response formatter.\n\nUse only the data provided in the user prompt.\n\nRules:\n- State the country's currency.\n- State the exchange rate as: 1 BASE = RATE TARGET.\n- Do not calculate any amount.\n- Do not invent or change any values.\n- Do not add extra explanation.\n- Maximum two sentences."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        736,
+        0
+      ],
+      "id": "eaa0518c-6e77-4d67-ba44-26e77be3a6c2",
+      "name": "Basic LLM Chain",
+      "retryOnFail": true,
+      "maxTries": 2,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://open.er-api.com/v6/latest/{{ $('Get Country Currency').first().json.currencies[0].code }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        576,
+        0
+      ],
+      "id": "23e81e5e-2da6-4de9-934f-fd1740322323",
+      "name": "Get Exchange Rate",
+      "retryOnFail": true,
+      "waitBetweenTries": 500,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b0684ec6-e240-446d-a59e-53ec14e5cb41",
+              "name": "failed_node",
+              "value": "AI Agent",
+              "type": "string"
+            },
+            {
+              "id": "01f9b073-f006-4bfd-be62-70b07f2b4a4c",
+              "name": "error_message",
+              "value": "={{ $json.error.message || $json.error.description || JSON.stringify($json.error) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        384,
+        144
+      ],
+      "id": "08553fa8-1ec9-464e-921e-08745270c644",
+      "name": "Tag Error - AI Agent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8b6852cf-8077-4c26-b5d3-a73b324e6d94",
+              "name": "failed_node",
+              "value": "Get Country Currency",
+              "type": "string"
+            },
+            {
+              "id": "853c86e4-90af-4b5c-a639-439cbf46376a",
+              "name": "error_message",
+              "value": "={{ $json.error.message || $json.error.description || JSON.stringify($json.error) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        560,
+        144
+      ],
+      "id": "6c3e05c2-12ff-41d4-ab68-bffffcac3799",
+      "name": "Tag Error - Country API"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7142766b-0189-4e10-8ea2-9689c2dcd1d8",
+              "name": "failed_node",
+              "value": "Get Exchange Rate",
+              "type": "string"
+            },
+            {
+              "id": "d24fd709-07f4-4256-9989-62214cf8fbf2",
+              "name": "error_message",
+              "value": "={{ $json.error.message || $json.error.description || JSON.stringify($json.error) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        736,
+        144
+      ],
+      "id": "d831784f-556f-4203-a4c7-bfc5cecc65e7",
+      "name": "Tag Error - Exchange API"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7b34e9b1-aef1-438e-8444-175ddee3b13c",
+              "name": "failed_node",
+              "value": "Basic LLM Chain",
+              "type": "string"
+            },
+            {
+              "id": "c1f5ad5d-cbd6-459a-ba43-47e481785c17",
+              "name": "error_message",
+              "value": "={{ $json.error.message || $json.error.description || JSON.stringify($json.error) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        912,
+        144
+      ],
+      "id": "9ec53144-32c8-4fb6-9a7a-263e9485cd01",
+      "name": "Tag Error - Final LLM"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6d05216e-6a16-4559-9eed-1ff3ab013656",
+              "name": "status",
+              "value": "failed",
+              "type": "string"
+            },
+            {
+              "id": "7fb68587-7a3b-4b2b-8aa5-04d7cab26c82",
+              "name": "failed_node",
+              "value": "={{ $json.failed_node }}",
+              "type": "string"
+            },
+            {
+              "id": "f00ae8f9-ad95-4f72-970f-acdd551c90d7",
+              "name": "error_message",
+              "value": "={{ $json.error_message }}",
+              "type": "string"
+            },
+            {
+              "id": "6abfbcad-3eaa-43ef-ae4e-04d186f75a5c",
+              "name": "action_required",
+              "value": "Human decision required",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        912,
+        304
+      ],
+      "id": "05743098-4405-407a-a9ba-ae30900e4ac7",
+      "name": "Central Error Handler"
+    },
+    {
+      "parameters": {
+        "resume": "form",
+        "formTitle": "Workflow Error Review",
+        "formDescription": "=Failed node: {{ $json.failed_node }}\n\nError: {{ $json.error_message }}\n\nPlease decide whether to retry or stop the workflow.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "decision",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Retry"
+                  },
+                  {
+                    "option": "Stop"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1040,
+        304
+      ],
+      "id": "788d826c-34fe-4667-8aa4-2b7f0884e290",
+      "name": "Error Human Review",
+      "webhookId": "84626531-0bba-48f7-b090-14d3c3e7072f"
+    },
+    {
+      "parameters": {
+        "resume": "form",
+        "formTitle": "Final Output Review",
+        "formDescription": "=The workflow completed successfully.\n\nFinal result:\n\n{{ $json.text }}\n\nPlease approve or reject this result.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "decision",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Approve"
+                  },
+                  {
+                    "option": "Reject"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1040,
+        -16
+      ],
+      "id": "f4561aab-c0e5-43cf-b8b5-f8e99eefd908",
+      "name": "Final Human Approval",
+      "webhookId": "696a9782-e149-4e85-8577-74eaa908e5b1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.decision }}",
+                    "rightValue": "=Approve",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "d9c57ea5-b060-4bf7-a3ab-09e2dea39d21"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "68b6dd21-4e03-4d56-a4e3-df21ff97d966",
+                    "leftValue": "={{ $json.decision }}",
+                    "rightValue": "Reject",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1184,
+        -16
+      ],
+      "id": "4f1398fa-58e4-443b-9db5-f985cdda14c1",
+      "name": "Final Decision"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "38c02343-4040-4b80-a31b-19fb0f4ad775",
+              "name": "status",
+              "value": "approved",
+              "type": "string"
+            },
+            {
+              "id": "1ae62d7f-5b5e-4e81-ac01-cffe6f0cdf91",
+              "name": "result",
+              "value": "={{ $('Basic LLM Chain').first().json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1344,
+        -80
+      ],
+      "id": "7c68ce77-bc52-4f3f-812c-8c2fb79f0029",
+      "name": "Approved Output"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "351d014a-ea51-40e8-9bbc-fedd0d027ecc",
+              "name": "status",
+              "value": "rejected",
+              "type": "string"
+            },
+            {
+              "id": "bbe9d995-7b41-463c-9984-178838a6e965",
+              "name": "result",
+              "value": "={{ $('Basic LLM Chain').first().json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1344,
+        48
+      ],
+      "id": "4966b9c9-7530-4406-9f37-c9b506e586b7",
+      "name": "Rejected Output"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.decision }}",
+                    "rightValue": "Retry",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "1c9012a2-07a0-4d31-9e35-6030c55feab6"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "bec59949-391c-40ef-a55c-cf405a729e03",
+                    "leftValue": "={{ $json.decision }}",
+                    "rightValue": "Stop",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1184,
+        304
+      ],
+      "id": "dee2ba89-0308-412e-abaf-d3e649240796",
+      "name": "Error Decision"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c58172d8-cf3a-4160-be4d-6274c0c1fcc6",
+              "name": "status",
+              "value": "stopped",
+              "type": "string"
+            },
+            {
+              "id": "7cc72bfb-7093-4204-9ef5-0f4ac78550ae",
+              "name": "message",
+              "value": "Workflow stopped by human after reviewing the error",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1344,
+        368
+      ],
+      "id": "e4565f21-a483-41b5-8538-b63b898b05d2",
+      "name": "Stopped by Human"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Central Error Handler').first().json.failed_node }}",
+                    "rightValue": "AI Agent",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "bc73a340-58bd-4b18-9edc-a77c7a5585f3"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "17b5e729-00d7-4620-b7c6-9a9da5adbb1e",
+                    "leftValue": "={{ $('Central Error Handler').first().json.failed_node }}",
+                    "rightValue": "Get Country Currency",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "876f67c0-54ef-4787-b9e5-2c4e3729eb0b",
+                    "leftValue": "={{ $('Central Error Handler').first().json.failed_node }}",
+                    "rightValue": "Get Exchange Rate",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "865427df-3d6b-497b-8961-870df1db36b7",
+                    "leftValue": "={{ $('Central Error Handler').first().json.failed_node }}",
+                    "rightValue": "Basic LLM Chain",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1344,
+        192
+      ],
+      "id": "f7e56bda-770e-4cc7-81dc-be73816bbc7b",
+      "name": "Retry Router"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Get Country Currency",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tag Error - AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Country Currency": {
+      "main": [
+        [
+          {
+            "node": "Get Exchange Rate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tag Error - Country API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Exchange Rate": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tag Error - Exchange API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Final Human Approval",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tag Error - Final LLM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tag Error - Exchange API": {
+      "main": [
+        [
+          {
+            "node": "Central Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tag Error - AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Central Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tag Error - Country API": {
+      "main": [
+        [
+          {
+            "node": "Central Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tag Error - Final LLM": {
+      "main": [
+        [
+          {
+            "node": "Central Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Central Error Handler": {
+      "main": [
+        [
+          {
+            "node": "Error Human Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Final Human Approval": {
+      "main": [
+        [
+          {
+            "node": "Final Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Final Decision": {
+      "main": [
+        [
+          {
+            "node": "Approved Output",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Rejected Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Human Review": {
+      "main": [
+        [
+          {
+            "node": "Error Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Decision": {
+      "main": [
+        [
+          {
+            "node": "Retry Router",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stopped by Human",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retry Router": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Country Currency",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Exchange Rate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "51fe3979-956c-4c10-9f4f-e21cdc851f42",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8caa5544510d8aed508563385d64d5d2f594c6dcb63e741fe9545833bbff9608"
+  },
+  "nodeGroups": [],
+  "id": "UO0MZthPRdvrwXnP",
+  "tags": []
+}
