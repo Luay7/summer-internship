@@ -1,0 +1,860 @@
+{
+  "name": "My workflow 5",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "11sv4FCu_3Gulm8eDk_vsT3QbpHGla4bO",
+          "mode": "list",
+          "cachedResultName": "Input Documents",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/11sv4FCu_3Gulm8eDk_vsT3QbpHGla4bO"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        -64
+      ],
+      "id": "f4dfd825-5616-4019-a940-0cdcc168f7af",
+      "name": "Google Drive Trigger",
+      "retryOnFail": true,
+      "waitBetweenTries": 500,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "au9Kkrna436evscd",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -48,
+        -80
+      ],
+      "id": "616d1cd9-72e9-4955-8cfe-2db5508ef8cc",
+      "name": "Download file",
+      "retryOnFail": true,
+      "waitBetweenTries": 500,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "au9Kkrna436evscd",
+          "name": "Google Drive account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        272,
+        -208
+      ],
+      "id": "da4d6d55-9975-42c6-b223-5fe11d594325",
+      "name": "Extract from File",
+      "retryOnFail": true,
+      "waitBetweenTries": 500,
+      "maxTries": 2,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "92400bba-114e-468a-a640-931d27af21bd",
+              "name": "text",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        752,
+        -272
+      ],
+      "id": "87bc75d1-5dea-4d96-acd8-efa80848cfd3",
+      "name": "Keep Text Only"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Summarize the following document:\n\n{{ $json.text }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are a document summarization specialist.  Your only task is to summarize the provided document.  Rules: - Preserve the main ideas and important details. - Do not add information that is not present in the document. - Remove repetition and unnecessary wording. - Produce a clear, structured, concise summary. - Use professional and simple English."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        800,
+        -64
+      ],
+      "id": "8afccb0b-fbae-4e9c-92e1-19fc4902bba2",
+      "name": "Summarize Document",
+      "retryOnFail": true,
+      "waitBetweenTries": 3000
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        800,
+        112
+      ],
+      "id": "baa70496-731b-445b-bb23-144f195b5a67",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "SxMMowXvXkEXPMhT",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "createFromText",
+        "content": "={{ $json.text }}",
+        "name": "={{ $('Google Drive Trigger').first().json.name.replace(/\\.pdf$/i, '') }}_summary.txt",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1j34vNB9RpU2EOKE4l-CK7nzWWnFm7m9k",
+          "mode": "list",
+          "cachedResultName": "Summaries",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1j34vNB9RpU2EOKE4l-CK7nzWWnFm7m9k"
+        },
+        "options": {
+          "convertToGoogleDocument": true
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1088,
+        -64
+      ],
+      "id": "b20d393a-d3fe-4938-9f28-b71849357214",
+      "name": "Create Summary Document",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "au9Kkrna436evscd",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "luayalhafi@gmail.com",
+        "subject": "Document Summary Completed",
+        "message": "=The document has been processed and summarized successfully.  Original file: {{ $('Google Drive Trigger').first().json.name }}  Summary file: {{ $('Google Drive Trigger').first().json.name.replace(/\\.pdf$/i, '') }}_summary.txt  Status: Completed successfully.  The summary has been saved to the Summaries folder in Google Drive.",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1248,
+        -64
+      ],
+      "id": "277414ac-4006-4c0f-aa63-58c59ea33966",
+      "name": "Send Success Notification",
+      "webhookId": "c62f860a-bcf2-4997-8c14-e859b5e2a814",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "LnZICNo87vd6ZMvH",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.mimeType }}",
+                    "rightValue": "application/pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "394139c5-5522-4685-ab84-def39917b33c"
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -208,
+        -64
+      ],
+      "id": "e7804f05-ac46-4a3c-ae97-4beeb3b99c23",
+      "name": "Document Type Router"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "951567e1-3753-4f00-9b68-c6cd893ef137",
+              "name": "status",
+              "value": "unsupported",
+              "type": "string"
+            },
+            {
+              "id": "21fbf80e-7aa6-4289-a55e-ae3ceb323409",
+              "name": "file_name",
+              "value": "={{ $json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "1a1ebd15-fe65-4ef5-84e4-a157f9805d68",
+              "name": "mime_type",
+              "value": "={{ $json.mimeType }}",
+              "type": "string"
+            },
+            {
+              "id": "2abf0d4d-8326-421a-9a0b-b89762db9dc0",
+              "name": "message",
+              "value": "Unsupported document type",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -64,
+        80
+      ],
+      "id": "f7a06607-2bf7-4ebd-929d-2b89cbadc4db",
+      "name": "Unsupported Document"
+    },
+    {
+      "parameters": {
+        "errorMessage": "=Unsupported document type: {{ $json.mimeType }}"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        768,
+        240
+      ],
+      "id": "14c4c0c2-05f0-4131-b3a3-2f38b0744c7f",
+      "name": "Stop and Error"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "86834a40-a391-4719-bfcc-a8c7cf16c161",
+              "leftValue": "={{ !!$json.error }}",
+              "rightValue": "is true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "272de0ed-6635-4452-bfa8-2a6ce25fca59",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        112,
+        -144
+      ],
+      "id": "23471795-bb9e-4383-88fb-4c7744f5889c",
+      "name": "Download Failed?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6ea2cd5c-fb29-44a2-8d88-4d0ef56e904e",
+              "name": "status",
+              "value": "failed",
+              "type": "string"
+            },
+            {
+              "id": "f78f829c-9f5e-4631-8e67-a0d4ebd17ee3",
+              "name": "failed_step",
+              "value": "Download File",
+              "type": "string"
+            },
+            {
+              "id": "0599a18b-eee9-4f9a-848d-2c05b009a74a",
+              "name": "file_name",
+              "value": "={{ $('Google Drive Trigger').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "d99cb375-1c90-47bc-be1c-445602b27ff7",
+              "name": "error_message",
+              "value": "={{ $json.error?.message || $json.details?.message || $json.message || 'Unknown download error' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        80,
+        80
+      ],
+      "id": "33a3ffb3-bb4b-4f5a-a1c6-f96941007ad1",
+      "name": "Download Error Handler"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ebe5cce4-731c-4b2b-af0a-91b08e5882c2",
+              "leftValue": "={{ !!$json.error }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        432,
+        -272
+      ],
+      "id": "a877b630-a3ee-45b2-bac1-ed3d5eacace7",
+      "name": "Extraction Failed?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f55910d9-5ef7-4079-8a2e-cd3a56be7523",
+              "name": "status",
+              "value": "failed",
+              "type": "string"
+            },
+            {
+              "id": "353dafd1-9a52-4f32-b31a-b365d1152fba",
+              "name": "failed_step",
+              "value": "Extract From File",
+              "type": "string"
+            },
+            {
+              "id": "33664925-46f3-4ffa-987b-595d32c1d1a4",
+              "name": "file_name",
+              "value": "={{ $('Google Drive Trigger').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "41ef869a-8a34-49df-b6b1-3b2958ab059e",
+              "name": "error_message",
+              "value": "={{ $json.error?.message || $json.details?.message || $json.message || 'Unable to extract text from document' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        80
+      ],
+      "id": "a81ceda7-f58a-43e5-a81f-c5b35f48e9c3",
+      "name": "Extraction Error Handler"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f278f3a5-1ae2-4656-b2ca-1d09aa624069",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "is not empty",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        592,
+        -208
+      ],
+      "id": "32241407-5422-4299-8580-bcf5699dbb15",
+      "name": "Text Valid?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ec918bb0-1f1f-4e87-86e6-b9944486df69",
+              "name": "status",
+              "value": "failed",
+              "type": "string"
+            },
+            {
+              "id": "45059e1d-11d0-4e3e-ac0e-a7e113f378f8",
+              "name": "failed_step",
+              "value": "Text Extraction",
+              "type": "string"
+            },
+            {
+              "id": "52890bd0-0ac1-4e0a-9654-18463d6e4e32",
+              "name": "file_name",
+              "value": "={{ $('Google Drive Trigger').item.json.name }}",
+              "type": "string"
+            },
+            {
+              "id": "9da1f201-58ff-45e6-a18b-6cf8b78e459e",
+              "name": "error_message",
+              "value": "No readable text was found in the document",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        368,
+        80
+      ],
+      "id": "e61e07d5-782e-456e-93c9-fe2ae122a0c7",
+      "name": "Empty Text Handler"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "675d01c3-f114-459a-9edc-e6cf65234584",
+              "name": "status",
+              "value": "failed",
+              "type": "string"
+            },
+            {
+              "id": "0e17044a-a160-4d68-9a1a-b8d4ccc86b6e",
+              "name": "failed_step",
+              "value": "={{ $json.failed_step }}",
+              "type": "string"
+            },
+            {
+              "id": "3e719ae5-0349-4914-82c5-488d3994f1b9",
+              "name": "file_name",
+              "value": "={{ $json.file_name }}",
+              "type": "string"
+            },
+            {
+              "id": "5d6b04f5-ac2e-498b-a73d-6ddf33c8a320",
+              "name": "error_message",
+              "value": "={{ $json.error_message }}",
+              "type": "string"
+            },
+            {
+              "id": "5eef136c-8886-43e7-a659-2c548434b19b",
+              "name": "mime_type",
+              "value": "={{ $('Google Drive Trigger').item.json.mimeType }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        512,
+        80
+      ],
+      "id": "253814a0-cdec-4f7a-89dc-ffa3e538b125",
+      "name": "Central Failure Handler"
+    },
+    {
+      "parameters": {
+        "sendTo": "luayalhafi@gmail.com",
+        "subject": "=Document Processing Failed - {{ $json.file_name }}",
+        "message": "=Document processing failed.  File: {{ $json.file_name }} Failed step: {{ $json.failed_step }} Error: {{ $json.error_message }} File type: {{ $json.mime_type }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        640,
+        240
+      ],
+      "id": "62be41d8-a9d8-408c-b522-c40568ae98ef",
+      "name": "Send Failure Notification",
+      "webhookId": "6e64b0fe-21fe-4e06-b03e-01c62e0391ae",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "LnZICNo87vd6ZMvH",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Google Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Document Type Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Download Failed?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Download Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Extraction Failed?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extraction Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Keep Text Only": {
+      "main": [
+        [
+          {
+            "node": "Summarize Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Summarize Document",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize Document": {
+      "main": [
+        [
+          {
+            "node": "Create Summary Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Summary Document": {
+      "main": [
+        [
+          {
+            "node": "Send Success Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Document Type Router": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Unsupported Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Unsupported Document": {
+      "main": [
+        [
+          {
+            "node": "Central Failure Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Failed?": {
+      "main": [
+        [
+          {
+            "node": "Download Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraction Failed?": {
+      "main": [
+        [
+          {
+            "node": "Extraction Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Text Valid?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Valid?": {
+      "main": [
+        [
+          {
+            "node": "Keep Text Only",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Empty Text Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Error Handler": {
+      "main": [
+        [
+          {
+            "node": "Central Failure Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Central Failure Handler": {
+      "main": [
+        [
+          {
+            "node": "Send Failure Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraction Error Handler": {
+      "main": [
+        [
+          {
+            "node": "Central Failure Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Empty Text Handler": {
+      "main": [
+        [
+          {
+            "node": "Central Failure Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Failure Notification": {
+      "main": [
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "da1c44ba-2348-4544-b657-50a273323d3f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8caa5544510d8aed508563385d64d5d2f594c6dcb63e741fe9545833bbff9608"
+  },
+  "nodeGroups": [],
+  "id": "pE9caLJhCUWrNucS",
+  "tags": []
+}
