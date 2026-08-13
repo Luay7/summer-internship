@@ -1,0 +1,51 @@
+{
+  "source_filename": "wikipedia.txt",
+  "input_sha256": "172aade854110243f16649a2b920801bd0c3a7a2501540f47b020b45aa01431f",
+  "checked_at_utc": "2026-08-13T09:16:30+00:00",
+  "agent_settings": {
+    "routing_agent_model": "gemma3:4b",
+    "routing_agent_version": 6,
+    "routing_agent_sample_chars": 9000,
+    "routing_agent_max_steps": 6,
+    "routing_agent_context": 8192,
+    "routing_agent_num_predict": 180,
+    "routing_agent_temperature": 0.0,
+    "max_tokens_per_batch": 2200
+  },
+  "metrics": {
+    "character_count": 4189,
+    "word_count": 693,
+    "line_count": 8,
+    "estimated_token_count": 940,
+    "readable_character_ratio": 0.9628,
+    "replacement_character_count": 0
+  },
+  "model_called": true,
+  "raw_response": "Thought: The text is meaningful and falls within the summarization limit. Therefore, I will proceed to a single chunk routing decision.\nFinal Answer: single_chunk | meaningful=yes | tokens=940 | reason=The file content is meaningful and within the direct summarization limit.",
+  "agent_trace": [
+    {
+      "step": 1,
+      "assistant_response": "Thought: I need to read the file content before judging it.\nAction: read_file()",
+      "tool": "read_file",
+      "observation": "Complete content supplied to the model."
+    },
+    {
+      "step": 2,
+      "assistant_response": "Thought: The text describes Saudi Arabia's geography, history, political structure, economy, and international relations. It appears to be a coherent and informative overview of the country. I need to determine if it exceeds the summarization limit before proceeding.\nAction: check_token_limit()",
+      "tool": "check_token_limit",
+      "observation": "within_limit | estimated_tokens=940 | limit=2200"
+    },
+    {
+      "step": 3,
+      "assistant_response": "Thought: The text is meaningful and falls within the summarization limit. Therefore, I will proceed to a single chunk routing decision.\nFinal Answer: single_chunk | meaningful=yes | tokens=940 | reason=The file content is meaningful and within the direct summarization limit."
+    }
+  ],
+  "sample_used": false,
+  "decision": {
+    "action": "single_chunk",
+    "is_meaningful": true,
+    "tokens": 940,
+    "reason": "The file content is meaningful and within the direct summarization limit.",
+    "decision_source": "routing_agent"
+  }
+}
