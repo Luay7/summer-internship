@@ -1,0 +1,763 @@
+{
+  "source_filename": "annual_project_report.txt",
+  "input_sha256": "9c72152ca226dae029584690d4e33edb71fcee889d642cd2be22f04bc0fdc478",
+  "routing_agent": {
+    "checked_at_utc": "2026-08-13T06:35:13+00:00",
+    "agent_settings": {
+      "routing_agent_model": "gemma3:4b",
+      "routing_agent_version": 6,
+      "routing_agent_sample_chars": 9000,
+      "routing_agent_max_steps": 6,
+      "routing_agent_context": 8192,
+      "routing_agent_num_predict": 180,
+      "routing_agent_temperature": 0.0,
+      "max_tokens_per_batch": 2200
+    },
+    "decision": {
+      "action": "semantic_chunking",
+      "is_meaningful": true,
+      "tokens": ">2200",
+      "reason": "The file exceeds the direct summarization limit.",
+      "decision_source": "routing_agent"
+    }
+  },
+  "processing_settings": {
+    "embedding_model": "mxbai-embed-large",
+    "breakpoint_percentile": 80.0,
+    "buffer_size": 2,
+    "chunking_version": 1,
+    "routing_agent_model": "gemma3:4b",
+    "routing_agent_version": 6,
+    "routing_agent_sample_chars": 9000,
+    "routing_agent_max_steps": 6,
+    "routing_agent_context": 8192,
+    "routing_agent_num_predict": 180,
+    "routing_agent_temperature": 0.0,
+    "max_tokens_per_batch": 2200,
+    "routing_action": "semantic_chunking"
+  },
+  "total_sentence_count": 411,
+  "total_chunk_count": 80,
+  "chunks": [
+    {
+      "chunk_number": 1,
+      "first_sentence_position": 0,
+      "final_sentence_position": 4,
+      "sentence_count": 5,
+      "character_count": 416,
+      "estimated_token_count": 107,
+      "text": "Integrated Project Delivery Report Section 1: site preparation The project team reviewed site preparation during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners. The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 2,
+      "first_sentence_position": 5,
+      "final_sentence_position": 6,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 3,
+      "first_sentence_position": 7,
+      "final_sentence_position": 13,
+      "sentence_count": 7,
+      "character_count": 801,
+      "estimated_token_count": 212,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for site preparation were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 2: material procurement"
+    },
+    {
+      "chunk_number": 4,
+      "first_sentence_position": 14,
+      "final_sentence_position": 16,
+      "sentence_count": 3,
+      "character_count": 357,
+      "estimated_token_count": 91,
+      "text": "The project team reviewed material procurement during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners. The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 5,
+      "first_sentence_position": 17,
+      "final_sentence_position": 18,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 6,
+      "first_sentence_position": 19,
+      "final_sentence_position": 23,
+      "sentence_count": 5,
+      "character_count": 626,
+      "estimated_token_count": 165,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for material procurement were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation."
+    },
+    {
+      "chunk_number": 7,
+      "first_sentence_position": 24,
+      "final_sentence_position": 39,
+      "sentence_count": 16,
+      "character_count": 1760,
+      "estimated_token_count": 462,
+      "text": "The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 3: health and safety The project team reviewed health and safety during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners. The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users. Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for health and safety were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 4: quality inspection The project team reviewed quality inspection during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 8,
+      "first_sentence_position": 40,
+      "final_sentence_position": 40,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 9,
+      "first_sentence_position": 41,
+      "final_sentence_position": 42,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 10,
+      "first_sentence_position": 43,
+      "final_sentence_position": 49,
+      "sentence_count": 7,
+      "character_count": 804,
+      "estimated_token_count": 212,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for quality inspection were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 5: schedule coordination"
+    },
+    {
+      "chunk_number": 11,
+      "first_sentence_position": 50,
+      "final_sentence_position": 51,
+      "sentence_count": 2,
+      "character_count": 240,
+      "estimated_token_count": 62,
+      "text": "The project team reviewed schedule coordination during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 12,
+      "first_sentence_position": 52,
+      "final_sentence_position": 52,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 13,
+      "first_sentence_position": 53,
+      "final_sentence_position": 63,
+      "sentence_count": 11,
+      "character_count": 1247,
+      "estimated_token_count": 322,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for schedule coordination were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 6: stakeholder communication The project team reviewed stakeholder communication during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 14,
+      "first_sentence_position": 64,
+      "final_sentence_position": 75,
+      "sentence_count": 12,
+      "character_count": 1369,
+      "estimated_token_count": 355,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users. Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for stakeholder communication were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 7: testing and commissioning The project team reviewed testing and commissioning during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 15,
+      "first_sentence_position": 76,
+      "final_sentence_position": 76,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 16,
+      "first_sentence_position": 77,
+      "final_sentence_position": 82,
+      "sentence_count": 6,
+      "character_count": 684,
+      "estimated_token_count": 176,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for testing and commissioning were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late."
+    },
+    {
+      "chunk_number": 17,
+      "first_sentence_position": 83,
+      "final_sentence_position": 88,
+      "sentence_count": 6,
+      "character_count": 678,
+      "estimated_token_count": 176,
+      "text": "To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 8: handover documentation The project team reviewed handover documentation during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners. The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 18,
+      "first_sentence_position": 89,
+      "final_sentence_position": 95,
+      "sentence_count": 7,
+      "character_count": 819,
+      "estimated_token_count": 212,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for handover documentation were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation."
+    },
+    {
+      "chunk_number": 19,
+      "first_sentence_position": 96,
+      "final_sentence_position": 99,
+      "sentence_count": 4,
+      "character_count": 410,
+      "estimated_token_count": 108,
+      "text": "The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 9: site preparation The project team reviewed site preparation during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 20,
+      "first_sentence_position": 100,
+      "final_sentence_position": 100,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 21,
+      "first_sentence_position": 101,
+      "final_sentence_position": 102,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 22,
+      "first_sentence_position": 103,
+      "final_sentence_position": 112,
+      "sentence_count": 10,
+      "character_count": 1160,
+      "estimated_token_count": 304,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for site preparation were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 10: material procurement The project team reviewed material procurement during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners. The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 23,
+      "first_sentence_position": 113,
+      "final_sentence_position": 114,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 24,
+      "first_sentence_position": 115,
+      "final_sentence_position": 119,
+      "sentence_count": 5,
+      "character_count": 626,
+      "estimated_token_count": 165,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for material procurement were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation."
+    },
+    {
+      "chunk_number": 25,
+      "first_sentence_position": 120,
+      "final_sentence_position": 123,
+      "sentence_count": 4,
+      "character_count": 413,
+      "estimated_token_count": 110,
+      "text": "The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 11: health and safety The project team reviewed health and safety during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 26,
+      "first_sentence_position": 124,
+      "final_sentence_position": 135,
+      "sentence_count": 12,
+      "character_count": 1348,
+      "estimated_token_count": 351,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users. Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for health and safety were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 12: quality inspection The project team reviewed quality inspection during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 27,
+      "first_sentence_position": 136,
+      "final_sentence_position": 136,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 28,
+      "first_sentence_position": 137,
+      "final_sentence_position": 138,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 29,
+      "first_sentence_position": 139,
+      "final_sentence_position": 147,
+      "sentence_count": 9,
+      "character_count": 1046,
+      "estimated_token_count": 274,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for quality inspection were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 13: schedule coordination The project team reviewed schedule coordination during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 30,
+      "first_sentence_position": 148,
+      "final_sentence_position": 148,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 31,
+      "first_sentence_position": 149,
+      "final_sentence_position": 159,
+      "sentence_count": 11,
+      "character_count": 1248,
+      "estimated_token_count": 323,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for schedule coordination were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 14: stakeholder communication The project team reviewed stakeholder communication during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 32,
+      "first_sentence_position": 160,
+      "final_sentence_position": 171,
+      "sentence_count": 12,
+      "character_count": 1370,
+      "estimated_token_count": 355,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users. Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for stakeholder communication were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 15: testing and commissioning The project team reviewed testing and commissioning during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 33,
+      "first_sentence_position": 172,
+      "final_sentence_position": 172,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 34,
+      "first_sentence_position": 173,
+      "final_sentence_position": 178,
+      "sentence_count": 6,
+      "character_count": 684,
+      "estimated_token_count": 176,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for testing and commissioning were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late."
+    },
+    {
+      "chunk_number": 35,
+      "first_sentence_position": 179,
+      "final_sentence_position": 184,
+      "sentence_count": 6,
+      "character_count": 679,
+      "estimated_token_count": 176,
+      "text": "To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 16: handover documentation The project team reviewed handover documentation during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners. The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 36,
+      "first_sentence_position": 185,
+      "final_sentence_position": 191,
+      "sentence_count": 7,
+      "character_count": 819,
+      "estimated_token_count": 212,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for handover documentation were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation."
+    },
+    {
+      "chunk_number": 37,
+      "first_sentence_position": 192,
+      "final_sentence_position": 195,
+      "sentence_count": 4,
+      "character_count": 411,
+      "estimated_token_count": 108,
+      "text": "The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 17: site preparation The project team reviewed site preparation during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 38,
+      "first_sentence_position": 196,
+      "final_sentence_position": 196,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 39,
+      "first_sentence_position": 197,
+      "final_sentence_position": 198,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 40,
+      "first_sentence_position": 199,
+      "final_sentence_position": 208,
+      "sentence_count": 10,
+      "character_count": 1160,
+      "estimated_token_count": 304,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for site preparation were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 18: material procurement The project team reviewed material procurement during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners. The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 41,
+      "first_sentence_position": 209,
+      "final_sentence_position": 210,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 42,
+      "first_sentence_position": 211,
+      "final_sentence_position": 215,
+      "sentence_count": 5,
+      "character_count": 626,
+      "estimated_token_count": 165,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for material procurement were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation."
+    },
+    {
+      "chunk_number": 43,
+      "first_sentence_position": 216,
+      "final_sentence_position": 231,
+      "sentence_count": 16,
+      "character_count": 1762,
+      "estimated_token_count": 462,
+      "text": "The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 19: health and safety The project team reviewed health and safety during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners. The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users. Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for health and safety were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 20: quality inspection The project team reviewed quality inspection during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 44,
+      "first_sentence_position": 232,
+      "final_sentence_position": 232,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 45,
+      "first_sentence_position": 233,
+      "final_sentence_position": 234,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 46,
+      "first_sentence_position": 235,
+      "final_sentence_position": 241,
+      "sentence_count": 7,
+      "character_count": 805,
+      "estimated_token_count": 212,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for quality inspection were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 21: schedule coordination"
+    },
+    {
+      "chunk_number": 47,
+      "first_sentence_position": 242,
+      "final_sentence_position": 243,
+      "sentence_count": 2,
+      "character_count": 240,
+      "estimated_token_count": 62,
+      "text": "The project team reviewed schedule coordination during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 48,
+      "first_sentence_position": 244,
+      "final_sentence_position": 244,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 49,
+      "first_sentence_position": 245,
+      "final_sentence_position": 255,
+      "sentence_count": 11,
+      "character_count": 1248,
+      "estimated_token_count": 323,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for schedule coordination were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 22: stakeholder communication The project team reviewed stakeholder communication during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 50,
+      "first_sentence_position": 256,
+      "final_sentence_position": 267,
+      "sentence_count": 12,
+      "character_count": 1370,
+      "estimated_token_count": 355,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users. Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for stakeholder communication were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 23: testing and commissioning The project team reviewed testing and commissioning during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 51,
+      "first_sentence_position": 268,
+      "final_sentence_position": 268,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 52,
+      "first_sentence_position": 269,
+      "final_sentence_position": 274,
+      "sentence_count": 6,
+      "character_count": 684,
+      "estimated_token_count": 176,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for testing and commissioning were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late."
+    },
+    {
+      "chunk_number": 53,
+      "first_sentence_position": 275,
+      "final_sentence_position": 280,
+      "sentence_count": 6,
+      "character_count": 679,
+      "estimated_token_count": 176,
+      "text": "To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 24: handover documentation The project team reviewed handover documentation during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners. The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 54,
+      "first_sentence_position": 281,
+      "final_sentence_position": 287,
+      "sentence_count": 7,
+      "character_count": 819,
+      "estimated_token_count": 212,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for handover documentation were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation."
+    },
+    {
+      "chunk_number": 55,
+      "first_sentence_position": 288,
+      "final_sentence_position": 291,
+      "sentence_count": 4,
+      "character_count": 411,
+      "estimated_token_count": 108,
+      "text": "The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 25: site preparation The project team reviewed site preparation during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 56,
+      "first_sentence_position": 292,
+      "final_sentence_position": 292,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 57,
+      "first_sentence_position": 293,
+      "final_sentence_position": 294,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 58,
+      "first_sentence_position": 295,
+      "final_sentence_position": 304,
+      "sentence_count": 10,
+      "character_count": 1160,
+      "estimated_token_count": 304,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for site preparation were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 26: material procurement The project team reviewed material procurement during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners. The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 59,
+      "first_sentence_position": 305,
+      "final_sentence_position": 306,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 60,
+      "first_sentence_position": 307,
+      "final_sentence_position": 311,
+      "sentence_count": 5,
+      "character_count": 626,
+      "estimated_token_count": 165,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for material procurement were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation."
+    },
+    {
+      "chunk_number": 61,
+      "first_sentence_position": 312,
+      "final_sentence_position": 315,
+      "sentence_count": 4,
+      "character_count": 413,
+      "estimated_token_count": 110,
+      "text": "The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 27: health and safety The project team reviewed health and safety during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 62,
+      "first_sentence_position": 316,
+      "final_sentence_position": 327,
+      "sentence_count": 12,
+      "character_count": 1348,
+      "estimated_token_count": 351,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users. Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for health and safety were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 28: quality inspection The project team reviewed quality inspection during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 63,
+      "first_sentence_position": 328,
+      "final_sentence_position": 328,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 64,
+      "first_sentence_position": 329,
+      "final_sentence_position": 330,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 65,
+      "first_sentence_position": 331,
+      "final_sentence_position": 339,
+      "sentence_count": 9,
+      "character_count": 1046,
+      "estimated_token_count": 274,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for quality inspection were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 29: schedule coordination The project team reviewed schedule coordination during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 66,
+      "first_sentence_position": 340,
+      "final_sentence_position": 340,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 67,
+      "first_sentence_position": 341,
+      "final_sentence_position": 351,
+      "sentence_count": 11,
+      "character_count": 1248,
+      "estimated_token_count": 323,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for schedule coordination were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 30: stakeholder communication The project team reviewed stakeholder communication during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 68,
+      "first_sentence_position": 352,
+      "final_sentence_position": 363,
+      "sentence_count": 12,
+      "character_count": 1370,
+      "estimated_token_count": 355,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users. Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for stakeholder communication were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 31: testing and commissioning The project team reviewed testing and commissioning during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 69,
+      "first_sentence_position": 364,
+      "final_sentence_position": 364,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 70,
+      "first_sentence_position": 365,
+      "final_sentence_position": 370,
+      "sentence_count": 6,
+      "character_count": 684,
+      "estimated_token_count": 176,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for testing and commissioning were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late."
+    },
+    {
+      "chunk_number": 71,
+      "first_sentence_position": 371,
+      "final_sentence_position": 376,
+      "sentence_count": 6,
+      "character_count": 679,
+      "estimated_token_count": 176,
+      "text": "To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 32: handover documentation The project team reviewed handover documentation during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners. The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 72,
+      "first_sentence_position": 377,
+      "final_sentence_position": 383,
+      "sentence_count": 7,
+      "character_count": 819,
+      "estimated_token_count": 212,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover. The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for handover documentation were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation."
+    },
+    {
+      "chunk_number": 73,
+      "first_sentence_position": 384,
+      "final_sentence_position": 387,
+      "sentence_count": 4,
+      "character_count": 411,
+      "estimated_token_count": 108,
+      "text": "The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 33: site preparation The project team reviewed site preparation during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners."
+    },
+    {
+      "chunk_number": 74,
+      "first_sentence_position": 388,
+      "final_sentence_position": 388,
+      "sentence_count": 1,
+      "character_count": 117,
+      "estimated_token_count": 29,
+      "text": "The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 75,
+      "first_sentence_position": 389,
+      "final_sentence_position": 390,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 76,
+      "first_sentence_position": 391,
+      "final_sentence_position": 400,
+      "sentence_count": 10,
+      "character_count": 1160,
+      "estimated_token_count": 304,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for site preparation were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Section 34: material procurement The project team reviewed material procurement during the scheduled coordination meeting. They compared the current condition with the approved plan, recorded evidence from field inspections, and assigned follow-up actions to named owners. The discussion considered operational impact, cost, schedule, safety, communication, and the needs of affected users."
+    },
+    {
+      "chunk_number": 77,
+      "first_sentence_position": 401,
+      "final_sentence_position": 402,
+      "sentence_count": 2,
+      "character_count": 190,
+      "estimated_token_count": 46,
+      "text": "Team members agreed that decisions should be based on verified observations rather than assumptions. They identified dependencies involving procurement, testing, documentation, and handover."
+    },
+    {
+      "chunk_number": 78,
+      "first_sentence_position": 403,
+      "final_sentence_position": 407,
+      "sentence_count": 5,
+      "character_count": 626,
+      "estimated_token_count": 165,
+      "text": "The responsible owner will update the status register and attach supporting photographs, measurements, or correspondence. Risks that cannot be resolved by the team will be escalated with a recommended action and clear deadline. The team also examined whether controls for material procurement were practical under normal operating conditions. Participants noted that a technically correct plan can fail when instructions are unclear, responsibilities overlap, or information arrives late. To reduce this risk, they simplified reporting, defined one source of truth, and agreed to verify critical changes before implementation."
+    },
+    {
+      "chunk_number": 79,
+      "first_sentence_position": 408,
+      "final_sentence_position": 409,
+      "sentence_count": 2,
+      "character_count": 158,
+      "estimated_token_count": 41,
+      "text": "The next cycle will measure completion time, error frequency, user feedback, and unresolved issues so that progress can be evaluated consistently. Conclusion:"
+    },
+    {
+      "chunk_number": 80,
+      "first_sentence_position": 410,
+      "final_sentence_position": 410,
+      "sentence_count": 1,
+      "character_count": 124,
+      "estimated_token_count": 29,
+      "text": "This coherent report records decisions, evidence, risks, responsibilities, and planned actions across connected workstreams."
+    }
+  ]
+}

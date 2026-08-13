@@ -1,0 +1,247 @@
+{
+  "source_chunks_file": "/content/outputs/chunks/annual_project_report_9c7215_chunks_mxbai-embed-large_buf2_p80_v1_agent-gemma3-4b_a6_t2200_semantic_chunking.json",
+  "summarization_model": "gemma3:4b",
+  "total_batch_count": 6,
+  "batches": [
+    {
+      "batch_id": 1,
+      "source_chunk_numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "estimated_token_count": 2184
+    },
+    {
+      "batch_id": 2,
+      "source_chunk_numbers": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "estimated_token_count": 2130
+    },
+    {
+      "batch_id": 3,
+      "source_chunk_numbers": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "estimated_token_count": 1969
+    },
+    {
+      "batch_id": 4,
+      "source_chunk_numbers": [
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ],
+      "estimated_token_count": 2111
+    },
+    {
+      "batch_id": 5,
+      "source_chunk_numbers": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "estimated_token_count": 1860
+    },
+    {
+      "batch_id": 6,
+      "source_chunk_numbers": [
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80
+      ],
+      "estimated_token_count": 1716
+    }
+  ],
+  "partial_summaries": [
+    {
+      "batch_id": 1,
+      "source_chunk_numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "estimated_source_token_count": 2184,
+      "summary": "The Integrated Project Delivery Report details a recurring pattern of coordinated meetings across seven key project areas: site preparation, material procurement, health and safety, quality inspection, schedule coordination, stakeholder communication, and testing & commissioning. Each meeting follows the same structure: comparison with an approved plan, recording of field inspection evidence, assignment of follow-up actions to designated owners, and a discussion encompassing operational impact, cost, schedule, safety, communication, and user needs. Decisions are consistently based on verified observations rather than assumptions.\n\nDependencies involving procurement, testing, documentation, and handover are systematically identified. Responsible owners will update status registers with supporting photographic evidence, measurements, or correspondence. Risks requiring escalation are documented with a recommended action and deadline. The team actively evaluates the practicality of controls for each activity area, noting that a technically sound plan can fail due to unclear instructions, overlapping responsibilities, or delayed information. To mitigate this risk, reporting has been simplified, a single source of truth established, and changes verified before implementation. Future progress will be assessed via measurements of completion time, error frequency, user feedback, and unresolved issues."
+    },
+    {
+      "batch_id": 2,
+      "source_chunk_numbers": [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "estimated_source_token_count": 2130,
+      "summary": "The project team conducted scheduled coordination meetings to review various aspects of the project, including handover documentation, site preparation, material procurement, health and safety, quality inspection, and schedule coordination. Decisions were consistently based on verified observations rather than assumptions. Key activities included comparing current conditions with approved plans, recording evidence from field inspections, assigning follow-up actions to named owners, updating a status register with supporting photographs, measurements, or correspondence, and escalating unresolved risks with recommended actions and deadlines. The team implemented strategies to mitigate potential failures of technically correct plans, such as simplifying reporting, defining a single source of truth, and verifying critical changes before implementation. A recurring measure was the next cycle's assessment of completion time, error frequency, user feedback, and unresolved issues for consistent progress evaluation. Dependencies were identified involving procurement, testing, documentation, and handover."
+    },
+    {
+      "batch_id": 3,
+      "source_chunk_numbers": [
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "estimated_source_token_count": 1969,
+      "summary": "The project team consistently employs a strategy centered on verified observations rather than assumptions in all operational reviews. Key elements include identifying dependencies across procurement, testing, documentation, handover, and site preparation; establishing a responsible owner for status updates with supporting evidence (photographs, measurements, correspondence); escalating unresolved risks with recommended actions and deadlines; and implementing controls to mitigate issues like unclear instructions, overlapping responsibilities, or late information – specifically simplifying reporting, defining a single source of truth, and verifying critical changes. The team’s approach involves regular monitoring through metrics such as completion time, error frequency, user feedback, and unresolved issues to ensure consistent progress evaluation. These coordinated reviews encompass stakeholder communication, testing & commissioning, handover documentation, site preparation, material procurement, and are conducted during scheduled coordination meetings where comparisons with approved plans, recorded field evidence, and follow-up actions are assigned."
+    },
+    {
+      "batch_id": 4,
+      "source_chunk_numbers": [
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54
+      ],
+      "estimated_source_token_count": 2111,
+      "summary": "The project team conducted scheduled coordination meetings to review progress across multiple sections: health and safety, quality inspection, schedule coordination, stakeholder communication, testing and commissioning, and handover documentation. Each meeting involved comparing the current status against approved plans, recording field inspection evidence, and assigning follow-up actions to designated owners. The discussions centered on operational impact, cost, schedule, safety, communication, and user needs. Team consensus prioritized decisions based on verified observations over assumptions. Identified dependencies included procurement, testing, documentation, and handover processes. Responsible owners were tasked with updating the status register and providing supporting documentation such as photographs, measurements, or correspondence. Unresolved risks requiring escalation involved recommended actions and defined deadlines. A key recurring theme was mitigating failures of technically correct plans due to unclear instructions, overlapping responsibilities, or delayed information; solutions included simplified reporting, a single source of truth, and pre-implementation change verification. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues consistently."
+    },
+    {
+      "batch_id": 5,
+      "source_chunk_numbers": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ],
+      "estimated_source_token_count": 1860,
+      "summary": "The project team conducted coordinated review meetings for sections 25 through 30, focusing on site preparation, material procurement, health and safety, quality inspection, schedule coordination, and stakeholder communication. Each meeting involved comparing the current status against approved plans, documenting field inspections, and assigning follow-up actions to specific owners. Discussions centered around operational impact, cost, schedule, safety, communication, and user needs. Decisions were predicated on verified observations rather than assumptions, with identified dependencies including procurement, testing, documentation, and handover. Responsible owners are required to update the status register and provide supporting evidence – photographs, measurements, or correspondence – for escalated risks requiring recommended actions and deadlines. A recurring issue addressed was the potential failure of technically correct plans due to unclear instructions, overlapping responsibilities, or delayed information. To mitigate this, reporting has been simplified, a single source of truth has been established, and changes are now verified before implementation. The next cycle will measure completion time, error frequency, user feedback, and unresolved issues consistently."
+    },
+    {
+      "batch_id": 6,
+      "source_chunk_numbers": [
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80
+      ],
+      "estimated_source_token_count": 1716,
+      "summary": "During coordinated meetings, the project team addressed operational impact, cost, schedule, safety, communication, and user needs for several key activities: testing and commissioning (Section 31), handover documentation (Section 32), site preparation (Section 33), and material procurement (Section 34). A core decision-making principle was to base decisions on verified observations rather than assumptions. Dependencies related to procurement, testing, documentation, and handover were identified and tracked. The responsible owner is tasked with updating the status register and providing supporting evidence – photographs, measurements, or correspondence – for escalated risks requiring a recommended action and deadline. To mitigate the risk of plan failure due to unclear instructions, overlapping responsibilities, or delayed information, the team implemented simplified reporting, established a single source of truth, and agreed on verification of critical changes before implementation. Future progress will be assessed through metrics including completion time, error frequency, user feedback, and unresolved issues."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+numpy
+stanza
+streamlit
+ollama
+fastapi
+uvicorn

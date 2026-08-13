@@ -1,0 +1,24 @@
+{
+  "source_chunks_file": "/content/outputs/chunks/team_meeting_minutes_765b5a_chunks_mxbai-embed-large_buf2_p80_v1_agent-gemma3-4b_a6_t2200_single_chunk.json",
+  "summarization_model": "gemma3:4b",
+  "total_batch_count": 1,
+  "batches": [
+    {
+      "batch_id": 1,
+      "source_chunk_numbers": [
+        1
+      ],
+      "estimated_token_count": 83
+    }
+  ],
+  "partial_summaries": [
+    {
+      "batch_id": 1,
+      "source_chunk_numbers": [
+        1
+      ],
+      "estimated_source_token_count": 83,
+      "summary": "Weekly Project Review – 5 August 2026\n\nDiscussion centered on a routing agent modification that now processes all text files from the input folder. The team decided to test Gemma 3 4B following unsuccessful performance of the 1B model in consistently adhering to tool sequences.\n\nActions included: updating the semantic judgment prompt, testing repeated corrupted content, and comparing expected and actual routes."
+    }
+  ]
+}

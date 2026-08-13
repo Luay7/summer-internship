@@ -1,0 +1,5 @@
+Weekly Project Review – 5 August 2026
+
+Discussion centered on a routing agent modification that now processes all text files from the input folder. The team decided to test Gemma 3 4B following unsuccessful performance of the 1B model in consistently adhering to tool sequences.
+
+Actions included: updating the semantic judgment prompt, testing repeated corrupted content, and comparing expected and actual routes.

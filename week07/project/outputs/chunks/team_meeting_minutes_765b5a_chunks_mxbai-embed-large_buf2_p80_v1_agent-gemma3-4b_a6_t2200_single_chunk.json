@@ -1,0 +1,52 @@
+{
+  "source_filename": "team_meeting_minutes.txt",
+  "input_sha256": "765b5aea290e1cf487563dc56a73334dc980094161aa96c1ca00c4ccc97bb998",
+  "routing_agent": {
+    "checked_at_utc": "2026-08-13T06:47:40+00:00",
+    "agent_settings": {
+      "routing_agent_model": "gemma3:4b",
+      "routing_agent_version": 6,
+      "routing_agent_sample_chars": 9000,
+      "routing_agent_max_steps": 6,
+      "routing_agent_context": 8192,
+      "routing_agent_num_predict": 180,
+      "routing_agent_temperature": 0.0,
+      "max_tokens_per_batch": 2200
+    },
+    "decision": {
+      "action": "single_chunk",
+      "is_meaningful": true,
+      "tokens": 83,
+      "reason": "The meeting notes are within the summarization limit.",
+      "decision_source": "routing_agent"
+    }
+  },
+  "processing_settings": {
+    "embedding_model": "mxbai-embed-large",
+    "breakpoint_percentile": 80.0,
+    "buffer_size": 2,
+    "chunking_version": 1,
+    "routing_agent_model": "gemma3:4b",
+    "routing_agent_version": 6,
+    "routing_agent_sample_chars": 9000,
+    "routing_agent_max_steps": 6,
+    "routing_agent_context": 8192,
+    "routing_agent_num_predict": 180,
+    "routing_agent_temperature": 0.0,
+    "max_tokens_per_batch": 2200,
+    "routing_action": "single_chunk"
+  },
+  "total_sentence_count": null,
+  "total_chunk_count": 1,
+  "chunks": [
+    {
+      "chunk_number": 1,
+      "first_sentence_position": null,
+      "final_sentence_position": null,
+      "sentence_count": null,
+      "character_count": 355,
+      "estimated_token_count": 83,
+      "text": "Meeting: Weekly Project Review\nDate: 5 August 2026\nDiscussion: The routing agent now reads all text files from the input folder. The team agreed to test Gemma 3 4B because the 1B model did not consistently follow the tool sequence.\nActions:\n1. Update the semantic judgment prompt.\n2. Test repeated corrupted content.\n3. Compare expected and actual routes."
+    }
+  ]
+}

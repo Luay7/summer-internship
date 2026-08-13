@@ -1,0 +1,215 @@
+{
+  "0damaged_system_export.txt": {
+    "ab333dcdcc6743498b5208bb1b5713562edb2c1e54a9b96c526d1802406051f6": {
+      "runs": [],
+      "agent_checks": [
+        {
+          "checked_at_utc": "2026-08-06T09:17:10+00:00",
+          "agent_settings": {
+            "routing_agent_model": "gemma3:4b",
+            "routing_agent_version": 6,
+            "routing_agent_sample_chars": 9000,
+            "routing_agent_max_steps": 6,
+            "routing_agent_context": 8192,
+            "routing_agent_num_predict": 180,
+            "routing_agent_temperature": 0.0,
+            "max_tokens_per_batch": 2200
+          },
+          "metrics": {
+            "character_count": 316,
+            "word_count": 22,
+            "line_count": 6,
+            "estimated_token_count": 62,
+            "readable_character_ratio": 0.9763,
+            "replacement_character_count": 0
+          },
+          "model_called": true,
+          "raw_response": "Thought: The content consists of repeated characters and placeholder strings with no understandable information.\nFinal Answer: skip | meaningful=no | tokens=none | reason=The file contains random gibberish without coherent meaning.",
+          "agent_trace": [
+            {
+              "step": 1,
+              "assistant_response": "Thought: I need to read the file content before judging it.\nAction: read_file()",
+              "tool": "read_file",
+              "observation": "Complete content supplied to the model."
+            },
+            {
+              "step": 2,
+              "assistant_response": "Thought: The content consists of repeated characters and placeholder strings with no understandable information.\nFinal Answer: skip | meaningful=no | tokens=none | reason=The file contains random gibberish without coherent meaning."
+            }
+          ],
+          "sample_used": false,
+          "decision": {
+            "action": "skip_file",
+            "is_meaningful": false,
+            "tokens": null,
+            "reason": "The file contains random gibberish without coherent meaning.",
+            "decision_source": "routing_agent"
+          },
+          "decision_file": "/home/mrcs/sp/04/outputs/agent_decisions/0damaged_system_export_ab333d_routing_gemma3-4b_v6.json"
+        }
+      ]
+    }
+  },
+  "annual_project_report.txt": {
+    "9c72152ca226dae029584690d4e33edb71fcee889d642cd2be22f04bc0fdc478": {
+      "runs": [
+        {
+          "processing_status": "completed",
+          "routing_action": "semantic_chunking",
+          "chunk_signature": "mxbai-embed-large_buf2_p80_v1_agent-gemma3-4b_a6_t2200_semantic_chunking",
+          "chunks_file": "/home/mrcs/sp/04/outputs/chunks/annual_project_report_9c7215_chunks_mxbai-embed-large_buf2_p80_v1_agent-gemma3-4b_a6_t2200_semantic_chunking.json",
+          "chunks_sha256": "b47297c7f6fa931af2b42261a742d0eebe63273b9c40da2eec4808dc3ff4375c",
+          "processed_at_utc": "2026-08-06T09:34:26+00:00",
+          "processing_settings": {
+            "embedding_model": "mxbai-embed-large",
+            "breakpoint_percentile": 80.0,
+            "buffer_size": 2,
+            "chunking_version": 1,
+            "routing_agent_model": "gemma3:4b",
+            "routing_agent_version": 6,
+            "routing_agent_sample_chars": 9000,
+            "routing_agent_max_steps": 6,
+            "routing_agent_context": 8192,
+            "routing_agent_num_predict": 180,
+            "routing_agent_temperature": 0.0,
+            "max_tokens_per_batch": 2200,
+            "routing_action": "semantic_chunking"
+          }
+        }
+      ],
+      "agent_checks": [
+        {
+          "checked_at_utc": "2026-08-06T09:20:35+00:00",
+          "agent_settings": {
+            "routing_agent_model": "gemma3:4b",
+            "routing_agent_version": 6,
+            "routing_agent_sample_chars": 9000,
+            "routing_agent_max_steps": 6,
+            "routing_agent_context": 8192,
+            "routing_agent_num_predict": 180,
+            "routing_agent_temperature": 0.0,
+            "max_tokens_per_batch": 2200
+          },
+          "metrics": {
+            "character_count": 46337,
+            "word_count": 6265,
+            "line_count": 139,
+            "estimated_token_count": 8833,
+            "readable_character_ratio": 0.9719,
+            "replacement_character_count": 0
+          },
+          "model_called": true,
+          "raw_response": "Thought: The text clearly communicates coherent information and its estimated token count (8833) significantly exceeds the limit of 2200. Therefore, I must route to semantic_chunking.\nFinal Answer: semantic_chunking | meaningful=yes | tokens=>2200 | reason=The file exceeds the direct summarization limit.",
+          "agent_trace": [
+            {
+              "step": 1,
+              "assistant_response": "Thought: I need to read the file content before proceeding with any judgment.\nAction: read_file()",
+              "tool": "read_file",
+              "observation": "Representative content supplied to the model."
+            },
+            {
+              "step": 2,
+              "assistant_response": "Thought: The provided content is a lengthy project report detailing discussions and actions across multiple areas (site preparation, material procurement, health & safety). It communicates coherent information about a structured process. I need to determine if it exceeds the summarization limit before proceeding.\nAction: check_token_limit()",
+              "tool": "check_token_limit",
+              "observation": "exceeds_limit | estimated_tokens=8833 | limit=2200"
+            },
+            {
+              "step": 3,
+              "assistant_response": "Thought: The text clearly communicates coherent information and its estimated token count (8833) significantly exceeds the limit of 2200. Therefore, I must route to semantic_chunking.\nFinal Answer: semantic_chunking | meaningful=yes | tokens=>2200 | reason=The file exceeds the direct summarization limit."
+            }
+          ],
+          "sample_used": true,
+          "decision": {
+            "action": "semantic_chunking",
+            "is_meaningful": true,
+            "tokens": ">2200",
+            "reason": "The file exceeds the direct summarization limit.",
+            "decision_source": "routing_agent"
+          },
+          "decision_file": "/home/mrcs/sp/04/outputs/agent_decisions/annual_project_report_9c7215_routing_gemma3-4b_v6.json"
+        }
+      ]
+    }
+  },
+  "team_meeting_minutes.txt": {
+    "765b5aea290e1cf487563dc56a73334dc980094161aa96c1ca00c4ccc97bb998": {
+      "runs": [
+        {
+          "processing_status": "completed",
+          "routing_action": "single_chunk",
+          "chunk_signature": "mxbai-embed-large_buf2_p80_v1_agent-gemma3-4b_a6_t2200_single_chunk",
+          "chunks_file": "/home/mrcs/sp/04/outputs/chunks/team_meeting_minutes_765b5a_chunks_mxbai-embed-large_buf2_p80_v1_agent-gemma3-4b_a6_t2200_single_chunk.json",
+          "chunks_sha256": "3123149afb793e09c4763681df87d741325b7d1b303f86b00cc0b1ba8bea4a07",
+          "processed_at_utc": "2026-08-06T09:34:26+00:00",
+          "processing_settings": {
+            "embedding_model": "mxbai-embed-large",
+            "breakpoint_percentile": 80.0,
+            "buffer_size": 2,
+            "chunking_version": 1,
+            "routing_agent_model": "gemma3:4b",
+            "routing_agent_version": 6,
+            "routing_agent_sample_chars": 9000,
+            "routing_agent_max_steps": 6,
+            "routing_agent_context": 8192,
+            "routing_agent_num_predict": 180,
+            "routing_agent_temperature": 0.0,
+            "max_tokens_per_batch": 2200,
+            "routing_action": "single_chunk"
+          }
+        }
+      ],
+      "agent_checks": [
+        {
+          "checked_at_utc": "2026-08-06T09:22:24+00:00",
+          "agent_settings": {
+            "routing_agent_model": "gemma3:4b",
+            "routing_agent_version": 6,
+            "routing_agent_sample_chars": 9000,
+            "routing_agent_max_steps": 6,
+            "routing_agent_context": 8192,
+            "routing_agent_num_predict": 180,
+            "routing_agent_temperature": 0.0,
+            "max_tokens_per_batch": 2200
+          },
+          "metrics": {
+            "character_count": 355,
+            "word_count": 58,
+            "line_count": 7,
+            "estimated_token_count": 83,
+            "readable_character_ratio": 0.9597,
+            "replacement_character_count": 0
+          },
+          "model_called": true,
+          "raw_response": "Thought: The text communicates a coherent meeting agenda and discussion points, and its token count is within the limit.\nFinal Answer: single_chunk | meaningful=yes | tokens=83 | reason=The meeting notes are within the direct summarization limit.",
+          "agent_trace": [
+            {
+              "step": 1,
+              "assistant_response": "Thought: I need to read the file content before judging it.\nAction: read_file()",
+              "tool": "read_file",
+              "observation": "Complete content supplied to the model."
+            },
+            {
+              "step": 2,
+              "assistant_response": "Thought: The text communicates a meeting agenda and discussion points regarding testing Gemma models. I need to determine its token limit status before routing it.\nAction: check_token_limit()",
+              "tool": "check_token_limit",
+              "observation": "within_limit | estimated_tokens=83 | limit=2200"
+            },
+            {
+              "step": 3,
+              "assistant_response": "Thought: The text communicates a coherent meeting agenda and discussion points, and its token count is within the limit.\nFinal Answer: single_chunk | meaningful=yes | tokens=83 | reason=The meeting notes are within the direct summarization limit."
+            }
+          ],
+          "sample_used": false,
+          "decision": {
+            "action": "single_chunk",
+            "is_meaningful": true,
+            "tokens": 83,
+            "reason": "The meeting notes are within the direct summarization limit.",
+            "decision_source": "routing_agent"
+          },
+          "decision_file": "/home/mrcs/sp/04/outputs/agent_decisions/team_meeting_minutes_765b5a_routing_gemma3-4b_v6.json"
+        }
+      ]
+    }
+  }
+}

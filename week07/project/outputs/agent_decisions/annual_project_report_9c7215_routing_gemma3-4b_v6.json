@@ -1,0 +1,51 @@
+{
+  "source_filename": "annual_project_report.txt",
+  "input_sha256": "9c72152ca226dae029584690d4e33edb71fcee889d642cd2be22f04bc0fdc478",
+  "checked_at_utc": "2026-08-13T06:35:13+00:00",
+  "agent_settings": {
+    "routing_agent_model": "gemma3:4b",
+    "routing_agent_version": 6,
+    "routing_agent_sample_chars": 9000,
+    "routing_agent_max_steps": 6,
+    "routing_agent_context": 8192,
+    "routing_agent_num_predict": 180,
+    "routing_agent_temperature": 0.0,
+    "max_tokens_per_batch": 2200
+  },
+  "metrics": {
+    "character_count": 46337,
+    "word_count": 6265,
+    "line_count": 139,
+    "estimated_token_count": 8833,
+    "readable_character_ratio": 0.9719,
+    "replacement_character_count": 0
+  },
+  "model_called": true,
+  "raw_response": "Thought: The text clearly communicates coherent information and its estimated token count (8833) significantly exceeds the summarization limit of 2200 tokens. Therefore, I must route to semantic_chunking.\nFinal Answer: semantic_chunking | meaningful=yes | tokens=>2200 | reason=The file exceeds the direct summarization limit.",
+  "agent_trace": [
+    {
+      "step": 1,
+      "assistant_response": "Thought: I need to read the file content before proceeding with any judgment.\nAction: read_file()",
+      "tool": "read_file",
+      "observation": "Representative content supplied to the model."
+    },
+    {
+      "step": 2,
+      "assistant_response": "Thought: The provided content is a lengthy project report detailing discussions and actions across multiple areas (site preparation, material procurement, health & safety). It communicates coherent information about a structured process. I need to determine if it exceeds the summarization limit before proceeding.\nAction: check_token_limit()",
+      "tool": "check_token_limit",
+      "observation": "exceeds_limit | estimated_tokens=8833 | limit=2200"
+    },
+    {
+      "step": 3,
+      "assistant_response": "Thought: The text clearly communicates coherent information and its estimated token count (8833) significantly exceeds the summarization limit of 2200 tokens. Therefore, I must route to semantic_chunking.\nFinal Answer: semantic_chunking | meaningful=yes | tokens=>2200 | reason=The file exceeds the direct summarization limit."
+    }
+  ],
+  "sample_used": true,
+  "decision": {
+    "action": "semantic_chunking",
+    "is_meaningful": true,
+    "tokens": ">2200",
+    "reason": "The file exceeds the direct summarization limit.",
+    "decision_source": "routing_agent"
+  }
+}

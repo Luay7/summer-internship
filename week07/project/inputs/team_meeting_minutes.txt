@@ -1,0 +1,7 @@
+Meeting: Weekly Project Review
+Date: 5 August 2026
+Discussion: The routing agent now reads all text files from the input folder. The team agreed to test Gemma 3 4B because the 1B model did not consistently follow the tool sequence.
+Actions:
+1. Update the semantic judgment prompt.
+2. Test repeated corrupted content.
+3. Compare expected and actual routes.

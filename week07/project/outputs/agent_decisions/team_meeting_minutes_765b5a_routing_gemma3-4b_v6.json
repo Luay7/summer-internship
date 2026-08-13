@@ -1,0 +1,51 @@
+{
+  "source_filename": "team_meeting_minutes.txt",
+  "input_sha256": "765b5aea290e1cf487563dc56a73334dc980094161aa96c1ca00c4ccc97bb998",
+  "checked_at_utc": "2026-08-13T06:47:40+00:00",
+  "agent_settings": {
+    "routing_agent_model": "gemma3:4b",
+    "routing_agent_version": 6,
+    "routing_agent_sample_chars": 9000,
+    "routing_agent_max_steps": 6,
+    "routing_agent_context": 8192,
+    "routing_agent_num_predict": 180,
+    "routing_agent_temperature": 0.0,
+    "max_tokens_per_batch": 2200
+  },
+  "metrics": {
+    "character_count": 355,
+    "word_count": 58,
+    "line_count": 7,
+    "estimated_token_count": 83,
+    "readable_character_ratio": 0.9597,
+    "replacement_character_count": 0
+  },
+  "model_called": true,
+  "raw_response": "Thought: The text communicates a clear agenda and actions related to testing Gemma models, and the estimated token count (83) is well within the limit (2200). Therefore, I can proceed with single-chunk routing.\nFinal Answer: single_chunk | meaningful=yes | tokens=83 | reason=The meeting notes are within the summarization limit.",
+  "agent_trace": [
+    {
+      "step": 1,
+      "assistant_response": "Thought: I need to read the file content before proceeding with any judgment.\nAction: read_file()",
+      "tool": "read_file",
+      "observation": "Complete content supplied to the model."
+    },
+    {
+      "step": 2,
+      "assistant_response": "Thought: The text describes a meeting agenda and actions to be taken regarding testing Gemma models. This appears to be a meaningful document describing a workflow. I need to determine if it's within the summarization limit before proceeding.\nAction: check_token_limit()",
+      "tool": "check_token_limit",
+      "observation": "within_limit | estimated_tokens=83 | limit=2200"
+    },
+    {
+      "step": 3,
+      "assistant_response": "Thought: The text communicates a clear agenda and actions related to testing Gemma models, and the estimated token count (83) is well within the limit (2200). Therefore, I can proceed with single-chunk routing.\nFinal Answer: single_chunk | meaningful=yes | tokens=83 | reason=The meeting notes are within the summarization limit."
+    }
+  ],
+  "sample_used": false,
+  "decision": {
+    "action": "single_chunk",
+    "is_meaningful": true,
+    "tokens": 83,
+    "reason": "The meeting notes are within the summarization limit.",
+    "decision_source": "routing_agent"
+  }
+}
